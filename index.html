@@ -1,279 +1,470 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy | Shadow Avengers</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJI Creators | Game Development Studio</title>
   <style>
+    :root {
+      --neon-blue: #00ffff;
+      --neon-purple: #9d00ff;
+      --dark-bg: #0a0a1a;
+      --darker-bg: #050510;
+      --text-color: #e0e0e0;
+    }
+    
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0f2027 0%, #1a2a32 50%, #2c5364 100%);
-      color: #e0e0e0;
-      line-height: 1.8;
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-      background-attachment: fixed;
+      font-family: 'Segoe UI', 'Roboto', sans-serif;
+      background: var(--dark-bg);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(157, 0, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 80% 70%, rgba(0, 255, 255, 0.1) 0%, transparent 20%);
     }
     
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-      border: 1px solid rgba(0, 255, 255, 0.1);
+    /* Cyberpunk Glow Effects */
+    .glow {
+      text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
     }
     
-    img.logo, img.app-icon {
-      width: 128px;
-      height: 128px;
-      border-radius: 16px;
-      margin: 10px auto;
-      display: block;
-      filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.4));
-      transition: transform 0.3s ease;
+    .purple-glow {
+      text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple);
     }
     
-    img.app-icon:hover, img.logo:hover {
-      transform: scale(1.05);
-    }
-    
-    h1 {
-      color: #00ffff;
-      text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-      font-size: 2.2em;
-      margin-bottom: 10px;
-    }
-    
-    h2 {
-      color: #00ffff;
-      border-bottom: 1px solid rgba(0, 255, 255, 0.3);
-      padding-bottom: 5px;
-      margin-top: 30px;
-    }
-    
-    h3 {
-      color: #00ccff;
-    }
-    
-    a {
-      color: #00ffcc;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    
-    a:hover {
-      color: #00ffff;
-      text-decoration: underline;
-    }
-    
-    footer {
-      margin-top: 50px;
-      font-size: 0.9em;
-      color: #aaa;
-      text-align: center;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 8px;
-    }
-    
-    .policy-section {
-      background: rgba(15, 30, 40, 0.7);
-      padding: 20px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      border-left: 3px solid #00ffff;
-    }
-    
-    strong {
-      color: #00ccff;
-    }
-    
-    ul {
-      padding-left: 20px;
-    }
-    
-    li {
-      margin-bottom: 8px;
+    /* Terminal-like styling */
+    .terminal {
+      font-family: 'Courier New', monospace;
+      background-color: rgba(0, 0, 0, 0.7);
+      border: 1px solid var(--neon-blue);
+      border-radius: 5px;
+      padding: 15px;
+      margin: 20px 0;
       position: relative;
     }
     
-    li:before {
-      content: "•";
-      color: #00ffff;
+    .terminal::before {
+      content: ">";
       position: absolute;
-      left: -15px;
+      left: 10px;
+      top: 15px;
+      color: var(--neon-blue);
     }
     
-    code {
-      background: rgba(0, 50, 70, 0.5);
-      padding: 2px 5px;
-      border-radius: 3px;
-      font-family: monospace;
+    .terminal-text {
+      margin-left: 20px;
     }
     
-    .back-button {
-      background: rgba(0, 200, 255, 0.2);
-      padding: 10px 20px;
+    /* Header Styles */
+    header {
+      background: linear-gradient(to right, var(--darker-bg), var(--dark-bg));
+      padding: 2rem 0;
+      text-align: center;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+    }
+    
+    .logo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid var(--neon-blue);
+      box-shadow: 0 0 20px var(--neon-blue);
+      margin: 0 auto;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo:hover {
+      transform: rotate(10deg) scale(1.05);
+    }
+    
+    h1 {
+      font-size: 3rem;
+      margin: 1rem 0;
+      color: var(--neon-blue);
+    }
+    
+    .tagline {
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      color: var(--neon-purple);
+    }
+    
+    /* Navigation */
+    nav {
+      background-color: rgba(10, 10, 30, 0.9);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(5px);
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .nav-link {
+      color: var(--text-color);
+      text-decoration: none;
+      padding: 0.5rem 1.5rem;
+      margin: 0 0.5rem;
       border-radius: 5px;
-      border: 1px solid #00ffff;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--neon-blue);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      color: var(--neon-blue);
+    }
+    
+    .nav-link:hover::before {
+      width: 100%;
+    }
+    
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+    
+    section {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background-color: rgba(15, 15, 35, 0.7);
+      border-radius: 10px;
+      border-left: 3px solid var(--neon-purple);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+    }
+    
+    section:hover {
+      transform: translateY(-5px);
+    }
+    
+    h2 {
+      color: var(--neon-blue);
+      font-size: 2rem;
+      margin-top: 0;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+      padding-bottom: 0.5rem;
+    }
+    
+    h3 {
+      color: var(--neon-purple);
+      font-size: 1.5rem;
+    }
+    
+    /* Game Cards */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .game-card {
+      background: linear-gradient(145deg, #0f0f2a, #1a1a3a);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 255, 255, 0.1);
+    }
+    
+    .game-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 255, 255, 0.2);
+      border-color: var(--neon-blue);
+    }
+    
+    .game-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    }
+    
+    .game-info {
+      padding: 1.5rem;
+    }
+    
+    .game-title {
+      font-size: 1.5rem;
+      margin: 0 0 0.5rem 0;
+      color: var(--neon-blue);
+    }
+    
+    .game-description {
+      margin-bottom: 1.5rem;
+    }
+    
+    .game-link {
       display: inline-block;
-      margin: 20px 0;
+      padding: 0.5rem 1rem;
+      background-color: var(--neon-purple);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
       transition: all 0.3s ease;
     }
     
-    .back-button:hover {
-      background: rgba(0, 200, 255, 0.4);
-      text-decoration: none;
+    .game-link:hover {
+      background-color: var(--neon-blue);
+      box-shadow: 0 0 10px var(--neon-blue);
     }
     
-    .print-link {
-      font-size: 0.9em;
-      float: right;
-      margin-bottom: 20px;
+    /* About Section */
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .profile-pic {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 3px solid var(--neon-purple);
+      box-shadow: 0 0 20px var(--neon-purple);
+    }
+    
+    /* Contact Section */
+    .contact-methods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .contact-card {
+      background: rgba(20, 20, 50, 0.7);
+      padding: 1.5rem;
+      border-radius: 10px;
+      border: 1px solid var(--neon-blue);
+      transition: all 0.3s ease;
+    }
+    
+    .contact-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--neon-blue);
+    }
+    
+    .contact-icon {
+      font-size: 2rem;
+      color: var(--neon-purple);
+      margin-bottom: 1rem;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--darker-bg);
+      padding: 2rem 0;
+      text-align: center;
+      border-top: 1px solid rgba(0, 255, 255, 0.2);
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    
+    .social-link {
+      color: var(--text-color);
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
+    }
+    
+    .social-link:hover {
+      color: var(--neon-blue);
+    }
+    
+    .copyright {
+      color: #888;
+      font-size: 0.9rem;
+    }
+    
+    /* Animations */
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+      }
+      20%, 24%, 55% {
+        text-shadow: none;
+      }
+    }
+    
+    .flicker {
+      animation: flicker 3s infinite;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .nav-link {
+        margin: 0.5rem 0;
+      }
+      
+      .about-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <header>
-    <img src="assets/app_icon_resized.png" alt="Shadow Avengers Icon" class="app-icon" />
-    <h1>Shadow Avengers - Privacy Policy</h1>
-    <img src="assets/dev_icon_resized.png" alt="AJI Creators Logo" class="logo" />
-    <h3>by AJI Creators</h3>
+    <img src="assets/dev_icon_resized.png" alt="AJI Creators Logo" class="logo">
+    <h1 class="glow">AJI <span class="flicker">CREATORS</span></h1>
+    <p class="tagline purple-glow">CRAFTING IMMERSIVE GAME EXPERIENCES</p>
   </header>
-
-  <div style="text-align: right;">
-    <a href="javascript:window.print()" class="print-link">🖨️ Print this Policy</a>
-  </div>
-
-  <p><strong>Effective Date:</strong> <span id="updateDate"></span></p>
-
-  <div class="policy-section">
-    <h2>Introduction</h2>
-    <p><strong><em>Shadow Avengers</em></strong>  is developed by <strong>AJI Creators</strong>. This Privacy Policy explains how we and our third-party partners collect, use, and share information when you use our mobile application.</p>
-    <p>By using the Game, you agree to the collection and use of information in accordance with this policy.</p>
-  </div>
-
-  <div class="policy-section">
-    <h2>Compliance Notice</h2>
-    <p>Shadow Avengers complies with:</p>
-    <ul>
-      <li>Google Play Developer Policies</li>
-      <li>GDPR (for EU users)</li>
-      <li>CCPA (for California residents)</li>
-      <li>COPPA (we do not knowingly collect data from children under 13)</li>
-    </ul>
-    <p>Our ads implementation follows Google's <a href="https://support.google.com/admob/answer/6128543" target="_blank">Families Policy</a> requirements.</p>
-  </div>
-
-  <div class="policy-section">
-    <h2>Information Collection & Use</h2>
-    <h3>Gameplay Data</h3>
-    <p>Shadow Avengers stores the following data <strong>only on your device</strong>:</p>
-    <ul>
-      <li>Game progress and level completion</li>
-      <li>High scores and achievements</li>
-      <li>Settings preferences</li>
-    </ul>
-    <p>This data is stored in local files (<code>high_score.dat</code>, <code>game_progress.dat</code>) and is never transmitted to our servers.</p>
-
-    <h3>Advertising Analytics</h3>
-    <p>We use Google AdMob for ads. AdMob may collect:</p>
-    <ul>
-      <li>Device information (model, OS version, IP address)</li>
-      <li>Non-personal identifiers (Advertising ID)</li>
-      <li>Ad interactions (clicks, impressions)</li>
-      <li>Usage data for analytics and fraud prevention</li>
-    </ul>
-    <p>Data is encrypted using TLS. See <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>.</p>
-  </div>
-
-  <div class="policy-section">
-    <h2>Personalized Ads</h2>
-    <p>We may serve personalized ads via AdMob. If you're in the EEA/UK, we use Google UMP to ask for consent first. You can opt out:</p>
-    <ul>
-      <li>In the Game's settings (if available)</li>
-      <li>Through <a href="https://adssettings.google.com" target="_blank">Google's Ad Settings</a></li>
-      <li>Via your device's ad tracking options</li>
-    </ul>
-    <p>Non-personalized ads may still be shown based on contextual information.</p>
-  </div>
-
-  <div class="policy-section">
-    <h2>Children's Privacy</h2>
-    <p><strong>This game is intended for a general audience</strong> and does not target children under 13. We do not knowingly collect personal information from children under 13.</p>
-    <p>If you believe we might have any information from or about a child under 13, please contact us immediately.</p>
-  </div>
-
-  <div class="policy-section">
-    <h2>Data Retention</h2>
-    <p>Since Shadow Avengers does not transmit personal data to our servers, we do not retain any user information.</p>
-    <p>Advertising partners retain data according to their respective privacy policies.</p>
-  </div>
-
-  <div class="policy-section">
-    <h2>Your Rights</h2>
-    <p>Depending on your location, you may have rights including:</p>
-    <ul>
-      <li><strong>Access:</strong> Request copies of your data</li>
-      <li><strong>Correction:</strong> Request correction of inaccurate data</li>
-      <li><strong>Deletion:</strong> Request deletion of your data</li>
-      <li><strong>Opt-out:</strong> Object to processing of your data</li>
-    </ul>
-    <p>To exercise these rights, please contact us using the information below.</p>
-  </div>
-
-  <div class="policy-section">
-    <h2>Security</h2>
-    <p>We implement reasonable security measures to protect your information:</p>
-    <ul>
-      <li>All ad-related data transmission uses TLS encryption</li>
-      <li>Game data remains locally stored on your device</li>
-      <li>Regular reviews of our data practices</li>
-    </ul>
-    <p>However, no method of transmission over the Internet is 100% secure.</p>
-  </div>
-
-  <div class="policy-section">
-    <h2>Changes to This Policy</h2>
-    <p>We may update this policy occasionally. We will notify you of any changes by:</p>
-    <ul>
-      <li>Posting the new policy on this page</li>
-      <li>Updating the "Effective Date" at the top</li>
-      <li>In-app notification for significant changes</li>
-    </ul>
-    <p>You're advised to review this policy periodically for any changes.</p>
-  </div>
-
-  <div class="policy-section">
-    <h2>Contact Us</h2>
-    <p>For privacy-related inquiries or data requests:</p>
-    <p><strong>Data Protection Officer</strong><br>
-    AJI Creators<br>
-    Email: <a href="mailto:royaloverlord.aicreator@gmail.com">royaloverlord.aicreator@gmail.com</a></p>
-    <p>We typically respond within 5-7 business days.</p>
-  </div>
-
-  <div style="text-align: center;">
-    <a href="https://play.google.com/store/apps/details?id=your.package.name" class="back-button">← Return to Shadow Avengers</a>
-  </div>
-
-  <footer>
-    <p>&copy; <span id="currentYear"></span> AJI Creators | Shadow Avengers</p>
-    <p>All game content and trademarks are property of their respective owners.</p>
-  </footer>
-
-  <script>
-    // Set current year in footer
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  
+  <nav>
+    <div class="nav-container">
+      <a href="#home" class="nav-link">HOME</a>
+      <a href="#games" class="nav-link">MY GAMES</a>
+      <a href="#about" class="nav-link">ABOUT</a>
+      <a href="#contact" class="nav-link">CONTACT</a>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <section id="home">
+      <div class="terminal">
+        <div class="terminal-text">
+          <p>> INITIALIZING DEVELOPER PROFILE...</p>
+          <p>> LOADING CREATIVE PROCESS...</p>
+          <p>> WELCOME TO AJI CREATORS STUDIO</p>
+          <p>> READY TO EXPLORE OUR GAME UNIVERSE</p>
+        </div>
+      </div>
+      
+      <h2>WELCOME TO OUR DIGITAL REALM</h2>
+      <p>At AJI Creators, we blend cutting-edge technology with artistic vision to create unforgettable gaming experiences. Our passion for game development drives us to push boundaries and craft worlds that captivate players.</p>
+      <p>Specializing in mobile game development with Unity, we bring innovative concepts to life with attention to detail and player engagement at the core of every project.</p>
+    </section>
     
-    // Set last updated date
-    document.getElementById('updateDate').textContent = new Date().toLocaleDateString('en-US', {
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric'
+    <section id="games">
+      <h2>MY GAMES</h2>
+      <p>Explore our growing portfolio of immersive gaming experiences:</p>
+      
+      <div class="games-grid">
+        <div class="game-card">
+          <img src="assets/app_icon_resized.png" alt="Shadow Avengers" class="game-image">
+          <div class="game-info">
+            <h3 class="game-title">SHADOW AVENGERS</h3>
+            <p class="game-description">A stealth-action mobile game where you navigate through shadowy environments, outsmart enemies, and complete challenging missions.</p>
+            <a href="https://magicalcoder-12.github.io/privacy_policy_website/" class="game-link">PRIVACY POLICY</a>
+          </div>
+        </div>
+        
+        <!-- Placeholder for future games -->
+        <div class="game-card">
+          <img src="https://placehold.co/600x400/1a1a3a/00ffff?text=COMING+SOON" alt="Coming Soon" class="game-image">
+          <div class="game-info">
+            <h3 class="game-title">SOLAR NEXUS</h3>
+            <p class="game-description">A futuristic RPG adventure currently in development. Stay tuned for updates!</p>
+            <a href="#" class="game-link">LEARN MORE</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="about">
+      <h2>ABOUT THE DEVELOPER</h2>
+      <div class="about-content">
+        <img src="assets/me.jpg" alt="Developer" class="profile-pic">
+        <div>
+          <h3>AJI CREATORS</h3>
+          <p>Independent game developer passionate about creating engaging mobile experiences. With a focus on innovative gameplay mechanics and atmospheric storytelling, we strive to deliver quality entertainment to players worldwide.</p>
+          <p>Our development philosophy combines technical excellence with creative vision, ensuring each game offers a unique and memorable experience.</p>
+          <p>Specialties: Unity Development, Game Design, Mobile Optimization, Player Engagement Strategies</p>
+        </div>
+      </div>
+    </section>
+    
+    <section id="contact">
+      <h2>CONTACT US</h2>
+      <p>For business inquiries, collaboration opportunities, or player support:</p>
+      
+      <div class="contact-methods">
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3>EMAIL</h3>
+          <p><a href="mailto:royaloverlord.aicreator@gmail.com">royaloverlord.aicreator@gmail.com</a></p>
+        </div>
+        
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <h3>PHONE</h3>
+          <p>+91 9490957410</p>
+        </div>
+        
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h3>LOCATION</h3>
+          <p>India</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <footer>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <p class="copyright">© <span id="year"></span> AJI CREATORS. ALL RIGHTS RESERVED.</p>
+  </footer>
+  
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
     });
   </script>
 </body>
