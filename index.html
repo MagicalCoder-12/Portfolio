@@ -6,40 +6,133 @@
   <title>Privacy Policy | Shadow Avengers</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: #fff;
-      line-height: 1.6;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f2027 0%, #1a2a32 50%, #2c5364 100%);
+      color: #e0e0e0;
+      line-height: 1.8;
       padding: 20px;
       max-width: 900px;
       margin: auto;
+      background-attachment: fixed;
     }
+    
     header {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+      border: 1px solid rgba(0, 255, 255, 0.1);
     }
+    
     img.logo, img.app-icon {
       width: 128px;
       height: 128px;
       border-radius: 16px;
       margin: 10px auto;
       display: block;
+      filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.4));
+      transition: transform 0.3s ease;
     }
-    h1, h2 {
+    
+    img.app-icon:hover, img.logo:hover {
+      transform: scale(1.05);
+    }
+    
+    h1 {
       color: #00ffff;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+      font-size: 2.2em;
+      margin-bottom: 10px;
     }
+    
+    h2 {
+      color: #00ffff;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+      padding-bottom: 5px;
+      margin-top: 30px;
+    }
+    
+    h3 {
+      color: #00ccff;
+    }
+    
     a {
       color: #00ffcc;
       text-decoration: none;
+      transition: color 0.2s;
     }
+    
     a:hover {
+      color: #00ffff;
       text-decoration: underline;
     }
+    
     footer {
-      margin-top: 40px;
+      margin-top: 50px;
       font-size: 0.9em;
       color: #aaa;
       text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+    }
+    
+    .policy-section {
+      background: rgba(15, 30, 40, 0.7);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border-left: 3px solid #00ffff;
+    }
+    
+    strong {
+      color: #00ccff;
+    }
+    
+    ul {
+      padding-left: 20px;
+    }
+    
+    li {
+      margin-bottom: 8px;
+      position: relative;
+    }
+    
+    li:before {
+      content: "•";
+      color: #00ffff;
+      position: absolute;
+      left: -15px;
+    }
+    
+    code {
+      background: rgba(0, 50, 70, 0.5);
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+    
+    .back-button {
+      background: rgba(0, 200, 255, 0.2);
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: 1px solid #00ffff;
+      display: inline-block;
+      margin: 20px 0;
+      transition: all 0.3s ease;
+    }
+    
+    .back-button:hover {
+      background: rgba(0, 200, 255, 0.4);
+      text-decoration: none;
+    }
+    
+    .print-link {
+      font-size: 0.9em;
+      float: right;
+      margin-bottom: 20px;
     }
   </style>
 </head>
@@ -51,51 +144,137 @@
     <h3>by AJI Creators</h3>
   </header>
 
-  <p><strong>Effective Date:</strong> June 1, 2025</p>
+  <div style="text-align: right;">
+    <a href="javascript:window.print()" class="print-link">🖨️ Print this Policy</a>
+  </div>
 
-  <h2>Introduction</h2>
-  <p><em>Shadow Avengers</em> ("the Game") is developed by <strong>AJI Creators</strong>. This Privacy Policy explains how we and our third-party partners collect, use, and share information when you use the Game.</p>
+  <p><strong>Effective Date:</strong> <span id="updateDate"></span></p>
 
-  <h2>Information We Collect</h2>
-  <h3>1. Data Collected by the Game</h3>
-  <p>The game does <strong>not collect personal information</strong>. It stores non-personal data (like high scores, level progress) locally on your device in files like <code>high_score.dat</code> and <code>game_progress.dat</code>. We don't see or share this data.</p>
+  <div class="policy-section">
+    <h2>Introduction</h2>
+    <p><em>Shadow Avengers</em>  is developed by <strong>AJI Creators</strong>. This Privacy Policy explains how we and our third-party partners collect, use, and share information when you use our mobile application.</p>
+    <p>By using the Game, you agree to the collection and use of information in accordance with this policy.</p>
+  </div>
 
-  <h3>2. Data Collected by AdMob</h3>
-  <p>We use Google AdMob for ads. AdMob may collect:</p>
-  <ul>
-    <li>Device Info: IP address, device ID (e.g., Advertising ID)</li>
-    <li>Ad Interactions: Clicks, impressions</li>
-    <li>Usage: For analytics, ad personalization, and fraud prevention</li>
-  </ul>
-  <p>Data is encrypted using TLS. See <a href="https://policies.google.com/privacy" target="_blank">Google’s Privacy Policy</a>.</p>
+  <div class="policy-section">
+    <h2>Compliance Notice</h2>
+    <p>Shadow Avengers complies with:</p>
+    <ul>
+      <li>Google Play Developer Policies</li>
+      <li>GDPR (for EU users)</li>
+      <li>CCPA (for California residents)</li>
+      <li>COPPA (we do not knowingly collect data from children under 13)</li>
+    </ul>
+    <p>Our ads implementation follows Google's <a href="https://support.google.com/admob/answer/6128543" target="_blank">Families Policy</a> requirements.</p>
+  </div>
 
-  <h2>Personalized Ads</h2>
-  <p>We may serve personalized ads via AdMob. If you're in the EEA/UK, we use Google UMP to ask for consent first. You can opt out:</p>
-  <ul>
-    <li>In the Game’s settings (if available)</li>
-    <li><a href="https://adssettings.google.com" target="_blank">Google’s Ad Settings</a></li>
-    <li>Through your device’s ad tracking options</li>
-  </ul>
+  <div class="policy-section">
+    <h2>Information Collection & Use</h2>
+    <h3>Gameplay Data</h3>
+    <p>Shadow Avengers stores the following data <strong>only on your device</strong>:</p>
+    <ul>
+      <li>Game progress and level completion</li>
+      <li>High scores and achievements</li>
+      <li>Settings preferences</li>
+    </ul>
+    <p>This data is stored in local files (<code>high_score.dat</code>, <code>game_progress.dat</code>) and is never transmitted to our servers.</p>
 
-  <h2>Children’s Privacy</h2>
-  <p><strong>This game is intended for a general audience</strong> and does not target children under 13. We do not enable COPPA tags since it's not a kids app.</p>
+    <h3>Advertising Analytics</h3>
+    <p>We use Google AdMob for ads. AdMob may collect:</p>
+    <ul>
+      <li>Device information (model, OS version, IP address)</li>
+      <li>Non-personal identifiers (Advertising ID)</li>
+      <li>Ad interactions (clicks, impressions)</li>
+      <li>Usage data for analytics and fraud prevention</li>
+    </ul>
+    <p>Data is encrypted using TLS. See <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>.</p>
+  </div>
 
-  <h2>Your Rights</h2>
-  <p>Under laws like GDPR or CCPA, you may:</p>
-  <ul>
-    <li>Request access, correction, or deletion of data</li>
-    <li>Opt out of personalized ads</li>
-  </ul>
-  <p>Contact: <a href="mailto:royaloverlord.aicreator@gmail.com">royaloverlord.aicreator@gmail.com</a></p>
+  <div class="policy-section">
+    <h2>Personalized Ads</h2>
+    <p>We may serve personalized ads via AdMob. If you're in the EEA/UK, we use Google UMP to ask for consent first. You can opt out:</p>
+    <ul>
+      <li>In the Game's settings (if available)</li>
+      <li>Through <a href="https://adssettings.google.com" target="_blank">Google's Ad Settings</a></li>
+      <li>Via your device's ad tracking options</li>
+    </ul>
+    <p>Non-personalized ads may still be shown based on contextual information.</p>
+  </div>
 
-  <h2>Security</h2>
-  <p>AdMob handles its own security using TLS encryption. We do not transmit or collect personal data.</p>
+  <div class="policy-section">
+    <h2>Children's Privacy</h2>
+    <p><strong>This game is intended for a general audience</strong> and does not target children under 13. We do not knowingly collect personal information from children under 13.</p>
+    <p>If you believe we might have any information from or about a child under 13, please contact us immediately.</p>
+  </div>
 
-  <h2>Changes to This Policy</h2>
-  <p>We may update this page as needed. You’ll be notified via the Game or this site if any major changes are made.</p>
+  <div class="policy-section">
+    <h2>Data Retention</h2>
+    <p>Since Shadow Avengers does not transmit personal data to our servers, we do not retain any user information.</p>
+    <p>Advertising partners retain data according to their respective privacy policies.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Your Rights</h2>
+    <p>Depending on your location, you may have rights including:</p>
+    <ul>
+      <li><strong>Access:</strong> Request copies of your data</li>
+      <li><strong>Correction:</strong> Request correction of inaccurate data</li>
+      <li><strong>Deletion:</strong> Request deletion of your data</li>
+      <li><strong>Opt-out:</strong> Object to processing of your data</li>
+    </ul>
+    <p>To exercise these rights, please contact us using the information below.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Security</h2>
+    <p>We implement reasonable security measures to protect your information:</p>
+    <ul>
+      <li>All ad-related data transmission uses TLS encryption</li>
+      <li>Game data remains locally stored on your device</li>
+      <li>Regular reviews of our data practices</li>
+    </ul>
+    <p>However, no method of transmission over the Internet is 100% secure.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Changes to This Policy</h2>
+    <p>We may update this policy occasionally. We will notify you of any changes by:</p>
+    <ul>
+      <li>Posting the new policy on this page</li>
+      <li>Updating the "Effective Date" at the top</li>
+      <li>In-app notification for significant changes</li>
+    </ul>
+    <p>You're advised to review this policy periodically for any changes.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Contact Us</h2>
+    <p>For privacy-related inquiries or data requests:</p>
+    <p><strong>Data Protection Officer</strong><br>
+    AJI Creators<br>
+    Email: <a href="mailto:royaloverlord.aicreator@gmail.com">royaloverlord.aicreator@gmail.com</a></p>
+    <p>We typically respond within 5-7 business days.</p>
+  </div>
+
+  <div style="text-align: center;">
+    <a href="https://play.google.com/store/apps/details?id=your.package.name" class="back-button">← Return to Shadow Avengers</a>
+  </div>
 
   <footer>
-    <p>&copy; 2025 AJI Creators | Shadow Avengers</p>
+    <p>&copy; <span id="currentYear"></span> AJI Creators | Shadow Avengers</p>
+    <p>All game content and trademarks are property of their respective owners.</p>
   </footer>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    
+    // Set last updated date
+    document.getElementById('updateDate').textContent = new Date().toLocaleDateString('en-US', {
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric'
+    });
+  </script>
 </body>
 </html>
