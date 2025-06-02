@@ -244,8 +244,7 @@
       width: 0;
       height: 2px;
       background-color: var(--neon-blue);
-      transition-property: width;
-      transition: all 0.3s ease;
+      transition: width 0.3s ease;
     }
     
     .nav-link:hover {
@@ -254,12 +253,10 @@
     
     .nav-link:hover::before {
       width: 100%;
-      color: white;
     }
     
     .nav-link.active {
       color: var(--neon-blue);
-      background-color: white;
     }
     
     .nav-link.active::before {
@@ -706,7 +703,7 @@
       }
     }
     
-    .flicker {
+    .ficker {
       animation: flicker 3s infinite;
     }
     
@@ -760,7 +757,7 @@
   <!-- Header -->
   <header>
     <img src="assets/dev_icon_resized.png" alt="AJI Creators Logo" class="logo floating">
-    <h1 class="glow">AJI <span class="flicker">CREATORS</span></h1>
+    <h1 class="glow">AJI <span class="ficker">CREATORS</span></h1>
     <p class="tagline purple-glow">CRAFTING IMMERSIVE GAME EXPERIENCES</p>
   </header>
   
@@ -832,8 +829,8 @@
           <img src="assets/app_icon_resized.png" alt="Shadow Avengers" class="game-image">
           <div class="game-info">
             <h3 class="game-title">SHADOW AVENGERS</h3>
-            <p class="game-description">A alien invader mobile game where you navigate through shadowy environments, outsmart enemies, and complete challenging missions.</p>
-            <a href="https://magicalcoder-12.github.io/Portfolio/privacy.html" class="game-link">PRIVACY POLICY</a>
+            <p class="game-description">An alien invader mobile game where you navigate through shadowy environments, outsmart enemies, and complete challenging missions.</p>
+            <a href="https://magicalcoder-12.github.io/privacy_policy_website/privacy.html" class="game-link">PRIVACY POLICY</a>
           </div>
         </div>
         
@@ -923,6 +920,8 @@
   <footer>
     <div class="social-links">
       <a href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.youtube.com/channel/UCmBkIOICmiFAb-uk4iI1AcQ" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.instagram.com/ajcreator_legend" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
     </div>
     <p class="copyright">© <span id="year"></span> AJI CREATORS. ALL RIGHTS RESERVED.</p>
   </footer>
@@ -935,7 +934,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
     // Initialize EmailJS with your public key
-    emailjs.init("ItsmH6aq4ZyRbOugQ"); // Your Public Key
+    emailjs.init("ItsmH6aq4ZyRbOugQ");
 
     // Preloader
     window.addEventListener('load', function() {
@@ -1015,7 +1014,7 @@
     });
     
     // Back to top button
-    document.getElementById('backToTop').addEventListener('click', function() {
+    document.getElementById('backToTop').addEventListener('click', () => {
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -1084,7 +1083,7 @@
     animateParticles();
     
     // Handle window resize
-    window.addEventListener('resize', function() {
+    window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     });
