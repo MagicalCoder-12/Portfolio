@@ -917,190 +917,202 @@
     <i class="fas fa-arrow-up"></i>
   </div>
 
-  <script>
-    // Initialize EmailJS
-    emailjs.init("2bAsGupQXwSQWHbzg"); // Replace with your EmailJS public key
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // Initialize EmailJS with your public key
+  emailjs.init("ItsmH6aq4ZyRbOugQ"); // Your Public Key
 
-    // Preloader
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('preloader').style.opacity = '0';
-        document.getElementById('preloader').style.visibility = 'hidden';
-        document.getElementById('mainContainer').classList.add('fade-in');
-        
-        // Animate skill bars
-        document.querySelectorAll('.skill-level').forEach(bar => {
-          bar.style.width = bar.getAttribute('data-width');
-        });
-        
-        // Animate game cards
-        document.querySelectorAll('.game-card').forEach((card, index) => {
-          setTimeout(() => {
-            card.classList.add('visible');
-          }, 300 * index);
-        });
-        
-        // Animate contact cards
-        document.querySelectorAll('.contact-card').forEach((card, index) => {
-          setTimeout(() => {
-            card.classList.add('visible');
-          }, 300 * index);
-        });
-      }, 1500);
+  // Preloader (unchanged)
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      document.getElementById('preloader').style.opacity = '0';
+      document.getElementById('preloader').style.visibility = 'hidden';
+      document.getElementById('mainContainer').classList.add('fade-in');
+      
+      document.querySelectorAll('.skill-level').forEach(bar => {
+        bar.style.width = bar.getAttribute('data-width');
+      });
+      
+      document.querySelectorAll('.game-card').forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add('visible');
+        }, 300 * index);
+      });
+      
+      document.querySelectorAll('.contact-card').forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add('visible');
+        }, 300 * index);
+      });
+    }, 1500);
+  });
+  
+  // Navigation scroll effect (unchanged)
+  window.addEventListener('scroll', function() {
+    const nav = document.getElementById('mainNav');
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+    
+    const backToTop = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+    
+    const sections = document.querySelectorAll('section');
+    let current = '';
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      
+      if (pageYOffset >= sectionTop - 200) {
+        current = section.getAttribute('id');
+      }
     });
     
-    // Navigation scroll effect
-    window.addEventListener('scroll', function() {
-      const nav = document.getElementById('mainNav');
-      if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
       }
+    });
+  });
+  
+  // Smooth scrolling for anchor links (unchanged)
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
       
-      // Back to top button
-      const backToTop = document.getElementById('backToTop');
-      if (window.scrollY > 300) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-      
-      // Active nav link based on scroll position
-      const sections = document.querySelectorAll('section');
-      let current = '';
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        if (pageYOffset >= sectionTop - 200) {
-          current = section.getAttribute('id');
-        }
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
       });
       
       document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('active');
-        }
       });
+      this.classList.add('active');
     });
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-        
-        // Update active nav link
-        document.querySelectorAll('.nav-link').forEach(link => {
-          link.classList.remove('active');
-        });
-        this.classList.add('active');
-      });
+  });
+  
+  // Back to top button (unchanged)
+  document.getElementById('backToTop').addEventListener('click', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
     });
-    
-    // Back to top button
-    document.getElementById('backToTop').addEventListener('click', function() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+  });
+  
+  // Set current year (unchanged)
+  document.getElementById('year').textContent = new Date().getFullYear();
+  
+  // Particle Background (unchanged)
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  
+  const particles = [];
+  const particleCount = window.innerWidth < 768 ? 30 : 100;
+  
+  for (let i = 0; i < particleCount; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 3 + 1,
+      speedX: Math.random() * 1 - 0.5,
+      speedY: Math.random() * 1 - 0.5,
+      color: Math.random() > 0.5 ? 'rgba(0, 255, 255, 0.5)' : 'rgba(157, 0, 255, 0.5)'
     });
+  }
+  
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    // Set current year
-    document.getElementById('year').textContent = new Date().getFullYear();
-    
-    // Particle Background
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d');
-    
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
-    const particles = [];
-    const particleCount = window.innerWidth < 768 ? 30 : 100;
-    
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 3 + 1,
-        speedX: Math.random() * 1 - 0.5,
-        speedY: Math.random() * 1 - 0.5,
-        color: Math.random() > 0.5 ? 'rgba(0, 255, 255, 0.5)' : 'rgba(157, 0, 255, 0.5)'
-      });
-    }
-    
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
       
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+      
+      p.x += p.speedX;
+      p.y += p.speedY;
+      
+      if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+      
+      for (let j = i + 1; j < particles.length; j++) {
+        const p2 = particles[j];
+        const distance = Math.sqrt(Math.pow(p.x - p2.x, 2) + Math.pow(p.y - p2.y, 2));
         
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.fill();
-        
-        p.x += p.speedX;
-        p.y += p.speedY;
-        
-        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
-        
-        // Draw connections between particles
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const distance = Math.sqrt(Math.pow(p.x - p2.x, 2) + Math.pow(p.y - p2.y, 2));
-          
-          if (distance < 100) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(0, 255, 255, ${1 - distance/100})`;
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.stroke();
-          }
+        if (distance < 100) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(0, 255, 255, ${1 - distance/100})`;
+          ctx.lineWidth = 0.5;
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
         }
       }
-      
-      requestAnimationFrame(animateParticles);
     }
     
-    animateParticles();
+    requestAnimationFrame(animateParticles);
+  }
+  
+  animateParticles();
+  
+  // Handle window resize (unchanged)
+  window.addEventListener('resize', function() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+  
+  // Contact form handling with EmailJS
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
     
-    // Handle window resize
-    window.addEventListener('resize', function() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
     
-    // Contact form handling with EmailJS
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
-      
-      emailjs.send("service_y2zz74r", "template_zy76853", {
-        from_name: name,
-        from_email: email,
-        message: message
-      })
-      .then(function(response) {
-        alert(`Thank you, ${name}! Your message has been sent successfully.`);
-        document.getElementById('contactForm').reset();
-      }, function(error) {
-        alert('Failed to send message. Please try again later.');
-        console.error('EmailJS error:', error);
-      });
+    // Validate form inputs
+    if (!name || !email || !message) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+    
+    // Get current time in HH:MM format (IST, UTC+5:30)
+    const now = new Date();
+    const offset = 5.5 * 60 * 60 * 1000; // IST offset
+    const istDate = new Date(now.getTime() + offset);
+    const time = `${istDate.getUTCHours().toString().padStart(2, '0')}:${istDate.getUTCMinutes().toString().padStart(2, '0')}`;
+    
+    // Send email using EmailJS
+    emailjs.send("service_y2zz74r","template_0f4xwty", {
+      name: name,
+      email: email,
+      message: message,
+      title: "Contact Form Submission",
+      time: time,
+      to_email: "royaloverlord.aicreator@gmail.com"
+    })
+    .then(function(response) {
+      console.log('SUCCESS!', response.status, response.text);
+      alert(`Thank you, ${name}! Your message has been sent successfully.`);
+      document.getElementById('contactForm').reset();
+    }, function(error) {
+      console.error('FAILED...', error.status, error.text);
+      alert(`Failed to send message: ${error.text}`);
     });
-  </script>
+  });
+</script>
 </body>
 </html>
