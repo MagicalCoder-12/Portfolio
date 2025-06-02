@@ -1,84 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ajith's Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .glow-btn {
+      background: linear-gradient(to right, #3b82f6, #9333ea);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(147, 51, 234, 0.3);
+    }
+    .scroll-down {
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(8px);
+      }
+    }
+    .hover-pop:hover {
+      transform: scale(1.03);
+      transition: transform 0.2s ease;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 font-sans">
-    <header class="bg-blue-600 text-white text-center py-6">
-        <h1 class="text-4xl font-bold">My Portfolio</h1>
-        <p class="mt-2 text-lg">Game Development & Machine Learning</p>
-    </header>
 
-    <nav class="bg-gray-800 text-white py-4">
-        <ul class="flex justify-center space-x-6">
-            <li><a href="#about" class="hover:text-blue-300">About</a></li>
-            <li><a href="#games" class="hover:text-blue-300">Games</a></li>
-            <li><a href="#ml-projects" class="hover:text-blue-300">ML Projects</a></li>
-            <li><a href="#contact" class="hover:text-blue-300">Contact</a></li>
-        </ul>
-    </nav>
+<body class="bg-gray-900 text-white font-sans">
+  <header class="bg-gray-800 py-6 sticky top-0 z-50 shadow-lg">
+    <div class="text-center">
+      <h1 class="text-4xl font-extrabold text-blue-400 animate-bounce">Ajith Kuppam</h1>
+      <p class="text-sm text-gray-300 animate-pulse">Game Dev 🎮 | ML Enthusiast 🤖 | AR/VR Future Builder 🚀</p>
+    </div>
+  </header>
 
-    <section id="about" class="py-12 px-4 text-center">
-        <h2 class="text-3xl font-bold mb-4">About Me</h2>
-        <p class="text-lg max-w-2xl mx-auto">
-            I'm a passionate game developer and machine learning enthusiast. I specialize in creating engaging 2D games using Godot and developing ML models with Python. Explore my projects below!
-        </p>
-    </section>
+  <nav class="bg-gray-700 py-4 text-center">
+    <ul class="flex justify-center space-x-6">
+      <li><a href="#about" class="hover:text-blue-400 transition">About</a></li>
+      <li><a href="#games" class="hover:text-blue-400 transition">Games</a></li>
+      <li><a href="#ml-projects" class="hover:text-blue-400 transition">ML Projects</a></li>
+      <li><a href="#contact" class="hover:text-blue-400 transition">Contact</a></li>
+    </ul>
+  </nav>
 
-    <section id="games" class="bg-white py-12 px-4">
-        <h2 class="text-3xl font-bold text-center mb-8">Game Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                <h3 class="text-xl font-semibold">Shadow Invasion</h3>
-                <p class="mt-2">A 2D Chicken Invaders-style game with shadow mechanics and elite enemies. Built with Godot.</p>
-                <a href="https://magicalcoder-12.github.io/Portfolio/index.html" class="mt-4 inline-block text-blue-600 hover:underline">View Project</a>
-            </div>
-            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                <h3 class="text-xl font-semibold">Dino Birthday</h3>
-                <p class="mt-2">A Godot game where a dinosaur collects letters to trigger a birthday video. Optimized for Android.</p>
-                <a href="https://magicalcoder-12.github.io/Portfolio/index.html" class="mt-4 inline-block text-blue-600 hover:underline">View Project</a>
-            </div>
-        </div>
-    </section>
+  <section id="about" class="py-16 px-6 text-center" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-4">🧠 About Me</h2>
+    <p class="text-lg max-w-3xl mx-auto text-gray-300">
+      I'm a Gen-Z developer.I made a game in Godot and am proficient in ML models. I am really interested in AR/VR development 🔥💻🕶️
+    </p>
+    <div class="mt-8 scroll-down text-blue-400 text-2xl">⬇️</div>
+  </section>
 
-    <section id="ml-projects" class="py-12 px-4">
-        <h2 class="text-3xl font-bold text-center mb-8">Machine Learning Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                <h3 class="text-xl font-semibold">Sentiment Analysis</h3>
-                <p class="mt-2">Analyzed 'fb_labeled_balanced.csv' dataset using pandas, matplotlib, and MiniLM for sentiment classification.</p>
-            </div>
-            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                <h3 class="text-xl font-semibold">Credit Card Fraud Detection</h3>
-                <p class="mt-2">Developed a model to detect fraudulent transactions using imbalanced dataset techniques and scikit-learn classifiers.</p>
-            </div>
-            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                <h3 class="text-xl font-semibold">Performance Analysis of Classification Algorithms</h3>
-                <p class="mt-2">Evaluated multiple classifiers (SVM, Random Forest, KNN) on various datasets to compare accuracy and performance.</p>
-            </div>
-            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                <h3 class="text-xl font-semibold">Predictive Maintenance for Industrial Equipment</h3>
-                <p class="mt-2">Built a model to predict equipment failures using time-series data and LSTM networks for proactive maintenance.</p>
-            </div>
-        </div>
-    </section>
+  <section id="games" class="py-16 px-6 bg-gray-800" data-aos="zoom-in">
+    <h2 class="text-3xl font-bold text-center mb-8">🎮 Game Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover-pop">
+        <h3 class="text-xl font-semibold text-blue-300">Shadow Avengers</h3>
+        <p class="mt-2 text-gray-200">A Chicken Invaders-style shadow shooter with elite enemies. Built with Godot.</p>
+        <a href="https://magicalcoder-12.github.io/Portfolio/" class="mt-4 inline-block text-blue-400 hover:underline">View Project</a>
+      </div>
+      <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover-pop">
+        <h3 class="text-xl font-semibold text-blue-300">Dino Birthday</h3>
+        <p class="mt-2 text-gray-200">A surprise-filled letter collector game for Android using Godot.</p>
+        <a href="https://magicalcoder-12.github.io/Portfolio/" class="mt-4 inline-block text-blue-400 hover:underline">View Project</a>
+      </div>
+    </div>
+  </section>
 
-    <section id="contact" class="bg-gray-800 text-white py-12 px-4 text-center">
-        <h2 class="text-3xl font-bold mb-4">Contact & Socials</h2>
-        <div class="max-w-2xl mx-auto">
-            <p class="text-lg mb-2"><strong>Email:</strong> kuppamajith@gmail.com</p>
-            <p class="text-lg mb-2"><strong>Phone:</strong> +91 9490957410</p>
-            <p class="text-lg mb-2"><strong>Instagram:</strong> <a href="https://instagram.com/ajcreator_legend" target="_blank" class="text-pink-300 hover:underline">@ajcreator_legend</a></p>
-            <p class="text-lg mb-6"><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ajithkuppam/" target="_blank" class="text-cyan-300 hover:underline">linkedin.com/in/ajithkuppam</a></p>
-            <a href="mailto:kuppamajith@gmail.com" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Contact Me</a>
-        </div>
-    </section>
+  <section id="ml-projects" class="py-16 px-6" data-aos="fade-up">
+    <h2 class="text-3xl font-bold text-center mb-8">🤖 ML Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover-pop">
+        <h3 class="text-xl font-semibold text-green-300">Sentiment Analysis</h3>
+        <p class="mt-2 text-gray-200">Using MiniLM to classify the sentiments in Facebook and gather 📈 insights.</p>
+      </div>
+      <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover-pop">
+        <h3 class="text-xl font-semibold text-green-300">Fraud Detection</h3>
+        <p class="mt-2 text-gray-200">Scikit-learn + imbalanced datasets = financial guardian angel 🛡️</p>
+      </div>
+      <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover-pop">
+        <h3 class="text-xl font-semibold text-green-300">Classifier Showdown</h3>
+        <p class="mt-2 text-gray-200">SVM vs KNN vs RandomForest - may the best algo win.</p>
+      </div>
+      <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover-pop">
+        <h3 class="text-xl font-semibold text-green-300">Predictive Maintenance</h3>
+        <p class="mt-2 text-gray-200">Used Random forest to remind you of the fixes before your machines even complains 🤯</p>
+      </div>
+    </div>
+  </section>
 
-    <footer class="bg-gray-900 text-white text-center py-4">
-        <p>© 2025 My Portfolio. All rights reserved.</p>
-    </footer>
+  <section id="contact" class="bg-gray-800 text-white py-16 px-6 text-center" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-4">📬 Contact & Socials</h2>
+    <div class="max-w-2xl mx-auto text-gray-300">
+      <p class="mb-2">📧 <strong>Email:</strong> kuppamajith@gmail.com</p>
+      <p class="mb-2">📞 <strong>Phone:</strong> +91 9490957410</p>
+      <p class="mb-2">📸 <strong>Instagram:</strong> <a href="https://instagram.com/ajcreator_legend" class="text-pink-400 hover:underline">@ajcreator_legend</a></p>
+      <p class="mb-6">🔗 <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ajithkuppam/" class="text-blue-300 hover:underline">linkedin.com/in/ajithkuppam</a></p>
+      <a href="mailto:kuppamajith@gmail.com" class="glow-btn py-2 px-4 rounded font-bold text-white mt-4 inline-block hover:opacity-90">Contact Me</a>
+    </div>
+  </section>
+
+  <footer class="bg-gray-900 text-white text-center py-4">
+    <p>© 2025 Ajith Kuppam. All rights reserved.</p>
+  </footer>
+
+  <script>
+    AOS.init();
+  </script>
 </body>
+
 </html>
