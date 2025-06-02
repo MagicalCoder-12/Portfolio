@@ -11,14 +11,25 @@
       --dark-bg: #0a0a1a;
       --darker-bg: #050510;
       --text-color: #e0e0e0;
+      --header-height: 80px;
+    }
+    
+    /* Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    @font-face {
+      font-family: 'Cyberpunk';
+      src: url('https://fonts.cdnfonts.com/css/cyberpunk') format('woff2');
     }
     
     body {
       font-family: 'Segoe UI', 'Roboto', sans-serif;
       background: var(--dark-bg);
       color: var(--text-color);
-      margin: 0;
-      padding: 0;
       line-height: 1.6;
       overflow-x: hidden;
       background-image: 
@@ -35,27 +46,78 @@
       text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple);
     }
     
-    /* Terminal-like styling */
-    .terminal {
-      font-family: 'Courier New', monospace;
-      background-color: rgba(0, 0, 0, 0.7);
-      border: 1px solid var(--neon-blue);
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--darker-bg);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--neon-purple);
       border-radius: 5px;
-      padding: 15px;
-      margin: 20px 0;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--neon-blue);
+    }
+    
+    /* Preloader */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--darker-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+    
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 5px solid transparent;
+      border-top-color: var(--neon-blue);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
       position: relative;
     }
     
-    .terminal::before {
-      content: ">";
+    .loader::before, .loader::after {
+      content: '';
       position: absolute;
-      left: 10px;
-      top: 15px;
-      color: var(--neon-blue);
+      border-radius: 50%;
+      border: 5px solid transparent;
     }
     
-    .terminal-text {
-      margin-left: 20px;
+    .loader::before {
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border-top-color: var(--neon-purple);
+      animation: spin 2s linear infinite;
+    }
+    
+    .loader::after {
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      border-top-color: var(--neon-blue);
+      animation: spin 3s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
     
     /* Header Styles */
@@ -65,6 +127,23 @@
       text-align: center;
       border-bottom: 1px solid rgba(0, 255, 255, 0.2);
       box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(45deg, transparent 48%, var(--neon-blue) 49%, var(--neon-blue) 51%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, var(--neon-blue) 49%, var(--neon-blue) 51%, transparent 52%);
+      background-size: 20px 20px;
+      opacity: 0.1;
+      pointer-events: none;
     }
     
     .logo {
@@ -74,23 +153,50 @@
       border: 3px solid var(--neon-blue);
       box-shadow: 0 0 20px var(--neon-blue);
       margin: 0 auto;
-      transition: transform 0.3s ease;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      position: relative;
+      z-index: 1;
     }
     
     .logo:hover {
       transform: rotate(10deg) scale(1.05);
+      box-shadow: 0 0 40px var(--neon-blue);
     }
     
     h1 {
       font-size: 3rem;
       margin: 1rem 0;
       color: var(--neon-blue);
+      font-family: 'Cyberpunk', sans-serif;
+      letter-spacing: 2px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--neon-blue);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.5s ease;
+    }
+    
+    h1:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
     }
     
     .tagline {
       font-size: 1.2rem;
       letter-spacing: 3px;
       color: var(--neon-purple);
+      text-transform: uppercase;
+      margin-top: 1rem;
     }
     
     /* Navigation */
@@ -102,6 +208,12 @@
       z-index: 100;
       backdrop-filter: blur(5px);
       border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    nav.scrolled {
+      padding: 0.5rem 1rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
     }
     
     .nav-container {
@@ -120,6 +232,8 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      font-family: 'Cyberpunk', sans-serif;
+      letter-spacing: 1px;
     }
     
     .nav-link::before {
@@ -141,11 +255,27 @@
       width: 100%;
     }
     
+    .nav-link.active {
+      color: var(--neon-blue);
+    }
+    
+    .nav-link.active::before {
+      width: 100%;
+    }
+    
     /* Main Content */
     .container {
       max-width: 1200px;
       margin: 2rem auto;
       padding: 0 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    
+    .container.fade-in {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     section {
@@ -155,11 +285,28 @@
       border-radius: 10px;
       border-left: 3px solid var(--neon-purple);
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(45deg, transparent 48%, rgba(0, 255, 255, 0.1) 49%, rgba(0, 255, 255, 0.1) 51%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(0, 255, 255, 0.1) 49%, rgba(0, 255, 255, 0.1) 51%, transparent 52%);
+      background-size: 10px 10px;
+      pointer-events: none;
     }
     
     section:hover {
       transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
     }
     
     h2 {
@@ -168,11 +315,53 @@
       margin-top: 0;
       border-bottom: 1px solid rgba(0, 255, 255, 0.3);
       padding-bottom: 0.5rem;
+      font-family: 'Cyberpunk', sans-serif;
+      letter-spacing: 1px;
+      position: relative;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--neon-purple);
     }
     
     h3 {
       color: var(--neon-purple);
       font-size: 1.5rem;
+      margin: 1rem 0;
+    }
+    
+    /* Terminal Styling */
+    .terminal {
+      font-family: 'Courier New', monospace;
+      background-color: rgba(0, 0, 0, 0.7);
+      border: 1px solid var(--neon-blue);
+      border-radius: 5px;
+      padding: 15px;
+      margin: 10px 0;
+      position: relative;
+    }
+    
+    .terminal::before {
+      content: ">";
+      position: absolute;
+      left: 10px;
+      top: 15px;
+      color: var(--neon-blue);
+    }
+    
+    .terminal-text {
+      margin-left: 20px;
+    }
+    
+    .terminal-text p {
+      margin: 0;
+      line-height: 1.5;
     }
     
     /* Game Cards */
@@ -188,12 +377,28 @@
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
+      transition: all 0.5s ease;
       border: 1px solid rgba(0, 255, 255, 0.1);
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .game-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .game-card:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+    
+    .game-card:nth-child(2) {
+      transition-delay: 0.2s;
     }
     
     .game-card:hover {
-      transform: translateY(-10px);
+      transform: translateY(-10px) rotate(1deg);
       box-shadow: 0 15px 30px rgba(0, 255, 255, 0.2);
       border-color: var(--neon-blue);
     }
@@ -203,20 +408,30 @@
       height: 200px;
       object-fit: cover;
       border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+      transition: transform 0.5s ease;
+    }
+    
+    .game-card:hover .game-image {
+      transform: scale(1.05);
     }
     
     .game-info {
       padding: 1.5rem;
+      position: relative;
+      z-index: 1;
     }
     
     .game-title {
       font-size: 1.5rem;
       margin: 0 0 0.5rem 0;
       color: var(--neon-blue);
+      font-family: 'Cyberpunk', sans-serif;
+      letter-spacing: 1px;
     }
     
     .game-description {
       margin-bottom: 1.5rem;
+      color: #ccc;
     }
     
     .game-link {
@@ -227,11 +442,28 @@
       text-decoration: none;
       border-radius: 5px;
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .game-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.5s ease;
     }
     
     .game-link:hover {
       background-color: var(--neon-blue);
       box-shadow: 0 0 10px var(--neon-blue);
+    }
+    
+    .game-link:hover::before {
+      left: 100%;
     }
     
     /* About Section */
@@ -248,6 +480,44 @@
       border-radius: 50%;
       border: 3px solid var(--neon-purple);
       box-shadow: 0 0 20px var(--neon-purple);
+      transition: all 0.5s ease;
+      filter: grayscale(30%);
+    }
+    
+    .profile-pic:hover {
+      filter: grayscale(0%);
+      transform: scale(1.05);
+      box-shadow: 0 0 30px var(--neon-purple);
+    }
+    
+    .skills-container {
+      margin-top: 2rem;
+    }
+    
+    .skill-bar {
+      margin-bottom: 1rem;
+    }
+    
+    .skill-name {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      color: var(--neon-blue);
+    }
+    
+    .skill-progress {
+      height: 10px;
+      background: rgba(0, 255, 255, 0.1);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    
+    .skill-level {
+      height: 100%;
+      background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+      border-radius: 5px;
+      width: 0;
+      transition: width 1.5s ease;
     }
     
     /* Contact Section */
@@ -263,6 +533,29 @@
       border-radius: 10px;
       border: 1px solid var(--neon-blue);
       transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .contact-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .contact-card:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+    
+    .contact-card:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+    
+    .contact-card:nth-child(3) {
+      transition-delay: 0.3s;
     }
     
     .contact-card:hover {
@@ -274,6 +567,12 @@
       font-size: 2rem;
       color: var(--neon-purple);
       margin-bottom: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-card:hover .contact-icon {
+      color: var(--neon-blue);
+      transform: scale(1.2);
     }
     
     /* Footer */
@@ -282,6 +581,21 @@
       padding: 2rem 0;
       text-align: center;
       border-top: 1px solid rgba(0, 255, 255, 0.2);
+      position: relative;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(45deg, transparent 48%, rgba(0, 255, 255, 0.05) 49%, rgba(0, 255, 255, 0.05) 51%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(0, 255, 255, 0.05) 49%, rgba(0, 255, 255, 0.05) 51%, transparent 52%);
+      background-size: 20px 20px;
+      pointer-events: none;
     }
     
     .social-links {
@@ -289,35 +603,108 @@
       justify-content: center;
       gap: 1.5rem;
       margin: 1.5rem 0;
+      position: relative;
+      z-index: 1;
     }
     
     .social-link {
       color: var(--text-color);
       font-size: 1.5rem;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(0, 255, 255, 0.1);
     }
     
     .social-link:hover {
       color: var(--neon-blue);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px var(--neon-blue);
+      background: rgba(0, 255, 255, 0.2);
     }
     
     .copyright {
       color: #888;
       font-size: 0.9rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--neon-purple);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 99;
+      box-shadow: 0 0 10px var(--neon-purple);
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      background: var(--neon-blue);
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px var(--neon-blue);
+    }
+    
+    /* Particle Background */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
     }
     
     /* Animations */
     @keyframes flicker {
       0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
         text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+        opacity: 1;
       }
       20%, 24%, 55% {
         text-shadow: none;
+        opacity: 0.8;
       }
     }
     
     .flicker {
       animation: flicker 3s infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    .floating {
+      animation: float 3s ease-in-out infinite;
     }
     
     /* Responsive Design */
@@ -342,42 +729,88 @@
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.cdnfonts.com/css/cyberpunk" rel="stylesheet">
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="loader"></div>
+    <p style="margin-top: 20px; color: var(--neon-blue);">LOADING SYSTEMS...</p>
+  </div>
+
+  <!-- Particle Background -->
+  <canvas id="particles" class="particles"></canvas>
+
+  <!-- Header -->
   <header>
-    <img src="assets/dev_icon_resized.png" alt="AJI Creators Logo" class="logo">
+    <img src="assets/dev_icon_resized.png" alt="AJI Creators Logo" class="logo floating">
     <h1 class="glow">AJI <span class="flicker">CREATORS</span></h1>
     <p class="tagline purple-glow">CRAFTING IMMERSIVE GAME EXPERIENCES</p>
   </header>
   
-  <nav>
+  <!-- Navigation -->
+  <nav id="mainNav">
     <div class="nav-container">
-      <a href="#home" class="nav-link">HOME</a>
+      <a href="#home" class="nav-link active">HOME</a>
       <a href="#games" class="nav-link">MY GAMES</a>
       <a href="#about" class="nav-link">ABOUT</a>
       <a href="#contact" class="nav-link">CONTACT</a>
     </div>
   </nav>
   
-  <div class="container">
+  <!-- Main Content -->
+  <div class="container" id="mainContainer">
     <section id="home">
+      <h2>WELCOME TO MY DIGITAL REALM</h2>
       <div class="terminal">
         <div class="terminal-text">
           <p>> INITIALIZING DEVELOPER PROFILE...</p>
           <p>> LOADING CREATIVE PROCESS...</p>
           <p>> WELCOME TO AJI CREATORS STUDIO</p>
-          <p>> READY TO EXPLORE OUR GAME UNIVERSE</p>
+          <p>> READY TO EXPLORE MY GAME UNIVERSE</p>
         </div>
       </div>
+      <p>At AJI Creators, I blend cutting-edge technology with artistic vision to create unforgettable gaming experiences. My passion for game development drives me to push boundaries and craft worlds that captivate players.</p>
+      <p>Specializing in mobile game development with Godot and Unity, I bring innovative concepts to life with attention to detail and player engagement at the core of every project.</p>
       
-      <h2>WELCOME TO OUR DIGITAL REALM</h2>
-      <p>At AJI Creators, we blend cutting-edge technology with artistic vision to create unforgettable gaming experiences. Our passion for game development drives us to push boundaries and craft worlds that captivate players.</p>
-      <p>Specializing in mobile game development with Unity, we bring innovative concepts to life with attention to detail and player engagement at the core of every project.</p>
+      <div class="skills-container">
+        <h3>MY SKILLS</h3>
+        <div class="skill-bar">
+          <div class="skill-name">
+            <span>Godot Development</span>
+            <span>96%</span>
+          </div>
+          <div class="skill-progress">
+            <div class="skill-level" data-width="96%"></div>
+          </div>
+        </div>
+        
+        <div class="skill-bar">
+          <div class="skill-name">
+            <span>Unity Development</span>
+            <span>4%</span>
+          </div>
+          <div class="skill-progress">
+            <div class="skill-level" data-width="4%"></div>
+          </div>
+        </div>
+        
+        <div class="skill-bar">
+          <div class="skill-name">
+            <span>Game Design</span>
+            <span>85%</span>
+          </div>
+          <div class="skill-progress">
+            <div class="skill-level" data-width="85%"></div>
+          </div>
+        </div>
+      </div>
     </section>
     
     <section id="games">
       <h2>MY GAMES</h2>
-      <p>Explore our growing portfolio of immersive gaming experiences:</p>
+      <p>Explore my growing portfolio of immersive gaming experiences:</p>
       
       <div class="games-grid">
         <div class="game-card">
@@ -389,7 +822,6 @@
           </div>
         </div>
         
-        <!-- Placeholder for future games -->
         <div class="game-card">
           <img src="https://placehold.co/600x400/1a1a3a/00ffff?text=COMING+SOON" alt="Coming Soon" class="game-image">
           <div class="game-info">
@@ -402,20 +834,28 @@
     </section>
     
     <section id="about">
-      <h2>ABOUT THE DEVELOPER</h2>
+      <h2>ABOUT ME</h2>
       <div class="about-content">
         <img src="assets/me.jpg" alt="Developer" class="profile-pic">
         <div>
           <h3>AJI CREATORS</h3>
-          <p>Independent game developer passionate about creating engaging mobile experiences. With a focus on innovative gameplay mechanics and atmospheric storytelling, we strive to deliver quality entertainment to players worldwide.</p>
-          <p>Our development philosophy combines technical excellence with creative vision, ensuring each game offers a unique and memorable experience.</p>
-          <p>Specialties: Unity Development, Game Design, Mobile Optimization, Player Engagement Strategies</p>
+          <p>I am an independent game developer passionate about creating engaging mobile experiences. With a focus on innovative gameplay mechanics and atmospheric storytelling, I strive to deliver quality entertainment to players worldwide.</p>
+          <p>My development philosophy combines technical excellence with creative vision, ensuring each game offers a unique and memorable experience.</p>
+          <p>Specialties: Godot Development, Unity Development, Game Design, Player Engagement Strategies</p>
+          
+          <div class="terminal">
+            <div class="terminal-text">
+              <p>> CURRENT PROJECTS: SOLAR NEXUS RPG</p>
+              <p>> YEARS EXPERIENCE: 3+</p>
+              <p>> GAMES PUBLISHED: 1</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
     
     <section id="contact">
-      <h2>CONTACT US</h2>
+      <h2>CONTACT ME</h2>
       <p>For business inquiries, collaboration opportunities, or player support:</p>
       
       <div class="contact-methods">
@@ -443,6 +883,25 @@
           <p>India</p>
         </div>
       </div>
+      
+      <form id="contactForm" style="margin-top: 2rem;">
+        <h3>SEND ME A MESSAGE</h3>
+        <div style="display: grid; gap: 1rem;">
+          <div>
+            <label for="name" style="display: block; margin-bottom: 0.5rem; color: var(--neon-blue);">Name</label>
+            <input type="text" id="name" name="name" required style="width: 100%; padding: 0.8rem; background: rgba(0, 255, 255, 0.1); border: 1px solid var(--neon-blue); border-radius: 5px; color: white;">
+          </div>
+          <div>
+            <label for="email" style="display: block; margin-bottom: 0.5rem; color: var(--neon-blue);">Email</label>
+            <input type="email" id="email" name="email" required style="width: 100%; padding: 0.8rem; background: rgba(0, 255, 255, 0.1); border: 1px solid var(--neon-blue); border-radius: 5px; color: white;">
+          </div>
+          <div>
+            <label for="message" style="display: block; margin-bottom: 0.5rem; color: var(--neon-blue);">Message</label>
+            <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 0.8rem; background: rgba(0, 255, 255, 0.1); border: 1px solid var(--neon-blue); border-radius: 5px; color: white;"></textarea>
+          </div>
+          <button type="submit" style="padding: 0.8rem 1.5rem; background: var(--neon-purple); color: white; border: none; border-radius: 5px; cursor: pointer; transition: all 0.3s ease;">SEND MESSAGE</button>
+        </div>
+      </form>
     </section>
   </div>
   
@@ -453,17 +912,193 @@
     <p class="copyright">© <span id="year"></span> AJI CREATORS. ALL RIGHTS RESERVED.</p>
   </footer>
   
+  <!-- Back to Top Button -->
+  <div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
   <script>
-    // Set current year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Initialize EmailJS
+    emailjs.init("2bAsGupQXwSQWHbzg"); // Replace with your EmailJS public key
+
+    // Preloader
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('preloader').style.opacity = '0';
+        document.getElementById('preloader').style.visibility = 'hidden';
+        document.getElementById('mainContainer').classList.add('fade-in');
+        
+        // Animate skill bars
+        document.querySelectorAll('.skill-level').forEach(bar => {
+          bar.style.width = bar.getAttribute('data-width');
+        });
+        
+        // Animate game cards
+        document.querySelectorAll('.game-card').forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.add('visible');
+          }, 300 * index);
+        });
+        
+        // Animate contact cards
+        document.querySelectorAll('.contact-card').forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.add('visible');
+          }, 300 * index);
+        });
+      }, 1500);
+    });
+    
+    // Navigation scroll effect
+    window.addEventListener('scroll', function() {
+      const nav = document.getElementById('mainNav');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+      
+      // Back to top button
+      const backToTop = document.getElementById('backToTop');
+      if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+      
+      // Active nav link based on scroll position
+      const sections = document.querySelectorAll('section');
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (pageYOffset >= sectionTop - 200) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
     
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
+        
         document.querySelector(this.getAttribute('href')).scrollIntoView({
           behavior: 'smooth'
         });
+        
+        // Update active nav link
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+        });
+        this.classList.add('active');
+      });
+    });
+    
+    // Back to top button
+    document.getElementById('backToTop').addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Particle Background
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const particles = [];
+    const particleCount = window.innerWidth < 768 ? 30 : 100;
+    
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 3 + 1,
+        speedX: Math.random() * 1 - 0.5,
+        speedY: Math.random() * 1 - 0.5,
+        color: Math.random() > 0.5 ? 'rgba(0, 255, 255, 0.5)' : 'rgba(157, 0, 255, 0.5)'
+      });
+    }
+    
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+        
+        p.x += p.speedX;
+        p.y += p.speedY;
+        
+        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+        
+        // Draw connections between particles
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const distance = Math.sqrt(Math.pow(p.x - p2.x, 2) + Math.pow(p.y - p2.y, 2));
+          
+          if (distance < 100) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(0, 255, 255, ${1 - distance/100})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+      }
+      
+      requestAnimationFrame(animateParticles);
+    }
+    
+    animateParticles();
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+    
+    // Contact form handling with EmailJS
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      emailjs.send("service_y2zz74r", "template_zy76853", {
+        from_name: name,
+        from_email: email,
+        message: message
+      })
+      .then(function(response) {
+        alert(`Thank you, ${name}! Your message has been sent successfully.`);
+        document.getElementById('contactForm').reset();
+      }, function(error) {
+        alert('Failed to send message. Please try again later.');
+        console.error('EmailJS error:', error);
       });
     });
   </script>
