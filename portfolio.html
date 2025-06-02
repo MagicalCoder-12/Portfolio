@@ -1,101 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AJI Creators Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background: #0f0f0f;
-      color: #fff;
-    }
-    header {
-      background: linear-gradient(90deg, #ff512f, #dd2476);
-      padding: 1rem;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      background-color: #1c1c1c;
-      padding: 0.5rem;
-      gap: 1rem;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    section {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
-    }
-    .card {
-      background: #1e1e1e;
-      padding: 1.5rem;
-      border-radius: 12px;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
-    }
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #111;
-      color: #aaa;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <header>
-    <h1>AJI Creators</h1>
-    <p>Game Dev | Machine Learning | AR/VR Enthusiast</p>
-  </header>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-blue-600 text-white text-center py-6">
+        <h1 class="text-4xl font-bold">My Portfolio</h1>
+        <p class="mt-2 text-lg">Game Development & Machine Learning</p>
+    </header>
 
-  <nav>
-    <a href="#gamedev">Game Dev</a>
-    <a href="#ml">Machine Learning</a>
-    <a href="#design">Design</a>
-    <a href="#contact">Contact</a>
-  </nav>
+    <nav class="bg-gray-800 text-white py-4">
+        <ul class="flex justify-center space-x-6">
+            <li><a href="#about" class="hover:text-blue-300">About</a></li>
+            <li><a href="#games" class="hover:text-blue-300">Games</a></li>
+            <li><a href="#ml-projects" class="hover:text-blue-300">ML Projects</a></li>
+            <li><a href="#contact" class="hover:text-blue-300">Contact</a></li>
+        </ul>
+    </nav>
 
-  <section id="gamedev" class="card">
-    <h2>Game Development</h2>
-    <p>Building awesome 2D games with Unity, Godot 4, and Pygame. From endless runners to boss battles with shadow mechanics, I craft gameplay that feels alive.</p>
-  </section>
+    <section id="about" class="py-12 px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4">About Me</h2>
+        <p class="text-lg max-w-2xl mx-auto">
+            I'm a passionate game developer and machine learning enthusiast. I specialize in creating engaging 2D games using Godot and developing ML models with Python. Explore my projects below!
+        </p>
+    </section>
 
-  <section id="ml" class="card">
-    <h2>Machine Learning</h2>
-    <p>Exploring predictive maintenance, sentiment analysis, and training ML models. Using Python, TensorFlow, and custom datasets to make AI smarter every day.</p>
-  </section>
+    <section id="games" class="bg-white py-12 px-4">
+        <h2 class="text-3xl font-bold text-center mb-8">Game Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold">Shadow Invasion</h3>
+                <p class="mt-2">A 2D Chicken Invaders-style game with shadow mechanics and elite enemies. Built with Godot.</p>
+                <a href="https://magicalcoder-12.github.io/Portfolio/index.html" class="mt-4 inline-block text-blue-600 hover:underline">View Project</a>
+            </div>
+            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold">Dino Birthday</h3>
+                <p class="mt-2">A Godot game where a dinosaur collects letters to trigger a birthday video. Optimized for Android.</p>
+                <a href="https://magicalcoder-12.github.io/Portfolio/index.html" class="mt-4 inline-block text-blue-600 hover:underline">View Project</a>
+            </div>
+        </div>
+    </section>
 
-  <section id="design" class="card">
-    <h2>Design & UX</h2>
-    <p>UI/UX design for games and tools. Clean interfaces, smooth feedback, and intuitive layouts are what I aim for. Also dabble in vector art and game icons.</p>
-  </section>
+    <section id="ml-projects" class="py-12 px-4">
+        <h2 class="text-3xl font-bold text-center mb-8">Machine Learning Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold">Sentiment Analysis</h3>
+                <p class="mt-2">Analyzed 'fb_labeled_balanced.csv' dataset using pandas, matplotlib, and MiniLM for sentiment classification.</p>
+            </div>
+            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold">Credit Card Fraud Detection</h3>
+                <p class="mt-2">Developed a model to detect fraudulent transactions using imbalanced dataset techniques and scikit-learn classifiers.</p>
+            </div>
+            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold">Performance Analysis of Classification Algorithms</h3>
+                <p class="mt-2">Evaluated multiple classifiers (SVM, Random Forest, KNN) on various datasets to compare accuracy and performance.</p>
+            </div>
+            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold">Predictive Maintenance for Industrial Equipment</h3>
+                <p class="mt-2">Built a model to predict equipment failures using time-series data and LSTM networks for proactive maintenance.</p>
+            </div>
+        </div>
+    </section>
 
-  <section id="contact" class="card contact-info">
-    <h2>Contact & Socials</h2>
-    <p><strong>Email:</strong> kuppamajith@gmail.com</p>
-    <p><strong>Phone:</strong> +91 9490957410</p>
-    <p><strong>Instagram:</strong> <a href="https://instagram.com/ajcreator_legend" target="_blank" style="color:#f78fb3;">@ajcreator_legend</a></p>
-    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ajithkuppam/" target="_blank" style="color:#00cec9;">linkedin.com/in/ajithkuppam</a></p>
-  </section>
+    <section id="contact" class="bg-gray-800 text-white py-12 px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4">Contact & Socials</h2>
+        <div class="max-w-2xl mx-auto">
+            <p class="text-lg mb-2"><strong>Email:</strong> kuppamajith@gmail.com</p>
+            <p class="text-lg mb-2"><strong>Phone:</strong> +91 9490957410</p>
+            <p class="text-lg mb-2"><strong>Instagram:</strong> <a href="https://instagram.com/ajcreator_legend" target="_blank" class="text-pink-300 hover:underline">@ajcreator_legend</a></p>
+            <p class="text-lg mb-6"><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ajithkuppam/" target="_blank" class="text-cyan-300 hover:underline">linkedin.com/in/ajithkuppam</a></p>
+            <a href="mailto:kuppamajith@gmail.com" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Contact Me</a>
+        </div>
+    </section>
 
-  <footer>
-    &copy; 2025 AJI Creators. All rights reserved.
-  </footer>
+    <footer class="bg-gray-900 text-white text-center py-4">
+        <p>© 2025 My Portfolio. All rights reserved.</p>
+    </footer>
 </body>
 </html>
