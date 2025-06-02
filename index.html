@@ -213,7 +213,7 @@
     
     nav.scrolled {
       padding: 0.5rem 1rem;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 30px rgba(0, 10, 10, 0.5);
     }
     
     .nav-container {
@@ -244,7 +244,8 @@
       width: 0;
       height: 2px;
       background-color: var(--neon-blue);
-      transition: width 0.3s ease;
+      transition-property: width;
+      transition: all 0.3s ease;
     }
     
     .nav-link:hover {
@@ -253,10 +254,12 @@
     
     .nav-link:hover::before {
       width: 100%;
+      color: white;
     }
     
     .nav-link.active {
       color: var(--neon-blue);
+      background-color: white;
     }
     
     .nav-link.active::before {
@@ -575,6 +578,19 @@
       transform: scale(1.2);
     }
     
+    /* Email Link Styling */
+    .contact-card a[href^="mailto"] {
+      color: var(--neon-blue);
+      text-decoration: none;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+    
+    .contact-card a[href^="mailto"]:hover {
+      color: var(--neon-purple);
+      text-decoration: underline;
+      text-shadow: 0 0 10px var(--neon-purple);
+    }
+    
     /* Footer */
     footer {
       background-color: var(--darker-bg);
@@ -730,7 +746,6 @@
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.cdnfonts.com/css/cyberpunk" rel="stylesheet">
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body>
   <!-- Preloader -->
@@ -818,7 +833,7 @@
           <div class="game-info">
             <h3 class="game-title">SHADOW AVENGERS</h3>
             <p class="game-description">A alien invader mobile game where you navigate through shadowy environments, outsmart enemies, and complete challenging missions.</p>
-            <a href="https://magicalcoder-12.github.io/privacy_policy_website/privacy.html" class="game-link">PRIVACY POLICY</a>
+            <a href="https://magicalcoder-12.github.io/Portfolio/privacy.html" class="game-link">PRIVACY POLICY</a>
           </div>
         </div>
         
@@ -917,202 +932,201 @@
     <i class="fas fa-arrow-up"></i>
   </div>
 
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-  // Initialize EmailJS with your public key
-  emailjs.init("ItsmH6aq4ZyRbOugQ"); // Your Public Key
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    // Initialize EmailJS with your public key
+    emailjs.init("ItsmH6aq4ZyRbOugQ"); // Your Public Key
 
-  // Preloader (unchanged)
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      document.getElementById('preloader').style.opacity = '0';
-      document.getElementById('preloader').style.visibility = 'hidden';
-      document.getElementById('mainContainer').classList.add('fade-in');
-      
-      document.querySelectorAll('.skill-level').forEach(bar => {
-        bar.style.width = bar.getAttribute('data-width');
-      });
-      
-      document.querySelectorAll('.game-card').forEach((card, index) => {
-        setTimeout(() => {
-          card.classList.add('visible');
-        }, 300 * index);
-      });
-      
-      document.querySelectorAll('.contact-card').forEach((card, index) => {
-        setTimeout(() => {
-          card.classList.add('visible');
-        }, 300 * index);
-      });
-    }, 1500);
-  });
-  
-  // Navigation scroll effect (unchanged)
-  window.addEventListener('scroll', function() {
-    const nav = document.getElementById('mainNav');
-    if (window.scrollY > 50) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-    
-    const backToTop = document.getElementById('backToTop');
-    if (window.scrollY > 300) {
-      backToTop.classList.add('visible');
-    } else {
-      backToTop.classList.remove('visible');
-    }
-    
-    const sections = document.querySelectorAll('section');
-    let current = '';
-    
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-      
-      if (pageYOffset >= sectionTop - 200) {
-        current = section.getAttribute('id');
-      }
+    // Preloader
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('preloader').style.opacity = '0';
+        document.getElementById('preloader').style.visibility = 'hidden';
+        document.getElementById('mainContainer').classList.add('fade-in');
+        
+        document.querySelectorAll('.skill-level').forEach(bar => {
+          bar.style.width = bar.getAttribute('data-width');
+        });
+        
+        document.querySelectorAll('.game-card').forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.add('visible');
+          }, 300 * index);
+        });
+        
+        document.querySelectorAll('.contact-card').forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.add('visible');
+          }, 300 * index);
+        });
+      }, 1500);
     });
     
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
+    // Navigation scroll effect
+    window.addEventListener('scroll', function() {
+      const nav = document.getElementById('mainNav');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
       }
-    });
-  });
-  
-  // Smooth scrolling for anchor links (unchanged)
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
       
-      document.querySelector(this.getAttribute('href')).scrollIntoView({
-        behavior: 'smooth'
+      const backToTop = document.getElementById('backToTop');
+      if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+      
+      const sections = document.querySelectorAll('section');
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (pageYOffset >= sectionTop - 200) {
+          current = section.getAttribute('id');
+        }
       });
       
       document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
-      });
-      this.classList.add('active');
-    });
-  });
-  
-  // Back to top button (unchanged)
-  document.getElementById('backToTop').addEventListener('click', function() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-  
-  // Set current year (unchanged)
-  document.getElementById('year').textContent = new Date().getFullYear();
-  
-  // Particle Background (unchanged)
-  const canvas = document.getElementById('particles');
-  const ctx = canvas.getContext('2d');
-  
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  
-  const particles = [];
-  const particleCount = window.innerWidth < 768 ? 30 : 100;
-  
-  for (let i = 0; i < particleCount; i++) {
-    particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: Math.random() * 3 + 1,
-      speedX: Math.random() * 1 - 0.5,
-      speedY: Math.random() * 1 - 0.5,
-      color: Math.random() > 0.5 ? 'rgba(0, 255, 255, 0.5)' : 'rgba(157, 0, 255, 0.5)'
-    });
-  }
-  
-  function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    for (let i = 0; i < particles.length; i++) {
-      const p = particles[i];
-      
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = p.color;
-      ctx.fill();
-      
-      p.x += p.speedX;
-      p.y += p.speedY;
-      
-      if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-      if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
-      
-      for (let j = i + 1; j < particles.length; j++) {
-        const p2 = particles[j];
-        const distance = Math.sqrt(Math.pow(p.x - p2.x, 2) + Math.pow(p.y - p2.y, 2));
-        
-        if (distance < 100) {
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(0, 255, 255, ${1 - distance/100})`;
-          ctx.lineWidth = 0.5;
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.stroke();
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
         }
-      }
-    }
+      });
+    });
     
-    requestAnimationFrame(animateParticles);
-  }
-  
-  animateParticles();
-  
-  // Handle window resize (unchanged)
-  window.addEventListener('resize', function() {
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+        
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+        });
+        this.classList.add('active');
+      });
+    });
+    
+    // Back to top button
+    document.getElementById('backToTop').addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Particle Background
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-  });
-  
-  // Contact form handling with EmailJS
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
     
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
+    const particles = [];
+    const particleCount = window.innerWidth < 768 ? 30 : 100;
     
-    // Validate form inputs
-    if (!name || !email || !message) {
-      alert('Please fill in all required fields.');
-      return;
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 3 + 1,
+        speedX: Math.random() * 1 - 0.5,
+        speedY: Math.random() * 1 - 0.5,
+        color: Math.random() > 0.5 ? 'rgba(0, 255, 255, 0.5)' : 'rgba(157, 0, 255, 0.5)'
+      });
     }
     
-    // Get current time in HH:MM format (IST, UTC+5:30)
-    const now = new Date();
-    const offset = 5.5 * 60 * 60 * 1000; // IST offset
-    const istDate = new Date(now.getTime() + offset);
-    const time = `${istDate.getUTCHours().toString().padStart(2, '0')}:${istDate.getUTCMinutes().toString().padStart(2, '0')}`;
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+        
+        p.x += p.speedX;
+        p.y += p.speedY;
+        
+        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+        
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const distance = Math.sqrt(Math.pow(p.x - p2.x, 2) + Math.pow(p.y - p2.y, 2));
+          
+          if (distance < 100) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(0, 255, 255, ${1 - distance/100})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+      }
+      
+      requestAnimationFrame(animateParticles);
+    }
     
-    // Send email using EmailJS
-    emailjs.send("service_y2zz74r","template_0f4xwty", {
-      name: name,
-      email: email,
-      message: message,
-      title: "Contact Form Submission",
-      time: time,
-      to_email: "royaloverlord.aicreator@gmail.com"
-    })
-    .then(function(response) {
-      console.log('SUCCESS!', response.status, response.text);
-      alert(`Thank you, ${name}! Your message has been sent successfully.`);
-      document.getElementById('contactForm').reset();
-    }, function(error) {
-      console.error('FAILED...', error.status, error.text);
-      alert(`Failed to send message: ${error.text}`);
+    animateParticles();
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     });
-  });
-</script>
+    
+    // Contact form handling with EmailJS
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      
+      // Validate form inputs
+      if (!name || !email || !message) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+      
+      // Get current time in HH:MM format (IST, UTC+5:30)
+      const now = new Date();
+      const offset = 5.5 * 60 * 60 * 1000; // IST offset
+      const istDate = new Date(now.getTime() + offset);
+      const time = `${istDate.getUTCHours().toString().padStart(2, '0')}:${istDate.getUTCMinutes().toString().padStart(2, '0')}`;
+      
+      // Send email using EmailJS
+      emailjs.send("service_y2zz74r", "template_0f4xwty", {
+        name: name,
+        email: email,
+        message: message,
+        title: "Contact Form Submission",
+        time: time,
+        to_email: "royaloverlord.aicreator@gmail.com"
+      })
+      .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        alert(`Thank you, ${name}! Your message has been sent successfully.`);
+        document.getElementById('contactForm').reset();
+      }, function(error) {
+        console.error('FAILED...', error.status, error.text);
+        alert(`Failed to send message: ${error.text}`);
+      });
+    });
+  </script>
 </body>
 </html>
