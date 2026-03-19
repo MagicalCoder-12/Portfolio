@@ -347,6 +347,44 @@
       border-color: var(--neon-blue);
     }
     
+    .game-card.featured {
+      border-color: #ff9800;
+      box-shadow: 0 5px 20px rgba(255, 152, 0, 0.2);
+    }
+    .game-card.featured:hover {
+      box-shadow: 0 15px 40px rgba(255, 152, 0, 0.3);
+      border-color: #ff9800;
+    }
+    .featured-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: linear-gradient(135deg, #ff9800, #ff5722);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      z-index: 10;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 10px rgba(255, 152, 0, 0.4);
+    }
+    .dev-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: linear-gradient(135deg, #9d00ff, #6200ea);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      z-index: 10;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
     .game-image {
       width: 100%;
       height: auto;
@@ -365,6 +403,47 @@
       padding: 1.5rem;
       position: relative;
       z-index: 1;
+    }
+    
+    .game-stats {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+    .game-stat {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.78rem;
+      color: #ccc;
+      background: rgba(0, 255, 255, 0.08);
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+    }
+    .game-stat i { color: var(--neon-blue); font-size: 0.75rem; }
+    .game-stat .star { color: #ff9800; }
+    .game-stat.downloads { color: #4caf50; }
+    .game-stat.downloads i { color: #4caf50; }
+    .game-stat.build-time { color: #a78bfa; }
+    .game-stat.build-time i { color: #a78bfa; }
+    .game-stat.platform { color: #93c5fd; }
+    .game-stat.platform i { color: #93c5fd; }
+    .game-meta {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+    .game-meta-tag {
+      font-size: 0.65rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+      background: rgba(157, 0, 255, 0.15);
+      color: #c084fc;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
     
     .game-title {
@@ -766,11 +845,23 @@
       <p>Explore my growing portfolio of immersive gaming experiences:</p>
       
   <div class="games-grid">
-    <div class="game-card">
+    <div class="game-card featured">
+      <div class="featured-badge"><i class="fas fa-crown"></i> Featured</div>
       <img src="assets/app_icon_resized.png" alt="Shadow Avengers" class="game-image">
       <div class="game-info">
         <h3 class="game-title">SHADOW AVENGERS</h3>
-        <p class="game-description">An alien invader mobile game where you navigate through shadowy environments, outsmart enemies, and complete challenging missions.</p>
+        <div class="game-stats">
+          <span class="game-stat"><i class="fas fa-star star"></i> 5.0</span>
+          <span class="game-stat"><i class="fas fa-comment"></i> 6 reviews</span>
+          <span class="game-stat downloads"><i class="fas fa-download"></i> 100+</span>
+          <span class="game-stat platform"><i class="fas fa-mobile-alt"></i> Android</span>
+        </div>
+        <p class="game-description">First built in Unity, then rebuilt in Godot due to ad integration issues and system limitations. A Chicken Invaders-style shadow shooter with progressive difficulty, elite enemy waves, and boss battles. Rated 7+.</p>
+        <div class="game-meta">
+          <span class="game-meta-tag">Godot</span>
+          <span class="game-meta-tag">GDScript</span>
+          <span class="game-meta-tag">2D</span>
+        </div>
         <a href="https://play.google.com/store/apps/dev?id=6253925717132103947&pli=1" class="game-link" target="_blank">VIEW</a>
         <a href="privacy.html" class="game-link">PRIVACY POLICY</a>
       </div>
@@ -780,7 +871,15 @@
       <img src="assets/Dino.jpg" alt="Dino Birthday" class="game-image">
       <div class="game-info">
         <h3 class="game-title">Dino Birthday</h3>
-        <p class="game-description">Celebrate with a cute dinosaur in this birthday-themed endless runner game!</p>
+        <div class="game-stats">
+          <span class="game-stat platform"><i class="fas fa-mobile-alt"></i> Android</span>
+        </div>
+        <p class="game-description">Celebrate with a cute dinosaur in this birthday-themed endless runner game! Collect letters and surprises as you run through colorful environments.</p>
+        <div class="game-meta">
+          <span class="game-meta-tag">Godot</span>
+          <span class="game-meta-tag">GDScript</span>
+          <span class="game-meta-tag">Endless Runner</span>
+        </div>
         <a href="dino_info.html" class="game-link">INFO</a>
       </div>
     </div>
@@ -789,8 +888,17 @@
       <img src="assets/Slime.png" alt="Slime Race" class="game-image">
       <div class="game-info">
         <h3 class="game-title">SLIME RACE</h3>
-        <p class="game-description">Race through challenging tracks as a speedy slime in this exciting mobile racing game!</p>
-        <a href="https://aji-creators.itch.io/" class="game-link" target="_blank">VIEW</a>
+        <div class="game-stats">
+          <span class="game-stat build-time"><i class="fas fa-clock"></i> Built in 4 days</span>
+          <span class="game-stat platform"><i class="fas fa-globe"></i> Web</span>
+        </div>
+        <p class="game-description">Race through challenging tracks as a speedy slime in this exciting mobile racing game! Playable directly in your browser.</p>
+        <div class="game-meta">
+          <span class="game-meta-tag">Godot</span>
+          <span class="game-meta-tag">GDScript</span>
+          <span class="game-meta-tag">HTML5</span>
+        </div>
+        <a href="https://aji-creators.itch.io/" class="game-link" target="_blank">PLAY</a>
       </div>
     </div>
 
@@ -798,16 +906,31 @@
       <img src="assets/Swim Bomber.png" alt="Swim Bomber" class="game-image">
       <div class="game-info">
         <h3 class="game-title">SWIM BOMBER</h3>
-        <p class="game-description">A time attack bomber man game where you have to collect 7 keys in 5 minutes. Race against the clock in this fast-paced challenge!</p>
-        <a href="https://aji-creators.itch.io/swim-bomber" class="game-link" target="_blank">VIEW</a>
+        <div class="game-stats">
+          <span class="game-stat build-time"><i class="fas fa-clock"></i> Built in 6 days</span>
+          <span class="game-stat platform"><i class="fas fa-globe"></i> Web</span>
+        </div>
+        <p class="game-description">A time attack bomber man game where you have to collect 7 keys in 5 minutes. Race against the clock in this fast-paced underwater challenge!</p>
+        <div class="game-meta">
+          <span class="game-meta-tag">Godot</span>
+          <span class="game-meta-tag">GDScript</span>
+          <span class="game-meta-tag">HTML5</span>
+        </div>
+        <a href="https://aji-creators.itch.io/swim-bomber" class="game-link" target="_blank">PLAY</a>
       </div>
     </div>
 
     <div class="game-card">
+      <div class="dev-badge"><i class="fas fa-code"></i> In Dev</div>
       <img src="https://placehold.co/600x400/1a1a3a/00ffff?text=COMING+SOON" alt="Coming Soon" class="game-image">
       <div class="game-info">
         <h3 class="game-title">SOLAR NEXUS</h3>
         <p class="game-description">A futuristic RPG adventure currently in development. Stay tuned for updates!</p>
+        <div class="game-meta">
+          <span class="game-meta-tag">Godot</span>
+          <span class="game-meta-tag">3D</span>
+          <span class="game-meta-tag">RPG</span>
+        </div>
         <a href="solar_nexus.html" class="game-link">LEARN MORE</a>
       </div>
     </div>
@@ -835,8 +958,9 @@
           <div class="terminal">
             <div class="terminal-text">
               <p>> CURRENT PROJECTS: SOLAR NEXUS RPG</p>
-              <p>> YEARS EXPERIENCE: 1</p>
-              <p>> GAMES PUBLISHED: 1</p>
+              <p>> YEARS EXPERIENCE: 2+</p>
+              <p>> GAMES PUBLISHED: 4</p>
+              <p>> PLATFORMS: Android | Web</p>
             </div>
           </div>
         </div>
