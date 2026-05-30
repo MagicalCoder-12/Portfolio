@@ -92,15 +92,15 @@
     <div class="print-bar">
       <div style="display:flex;gap:0.5rem;flex-wrap:wrap;width:100%;justify-content:space-between;align-items:center">
         <div style="display:flex;gap:0.4rem;flex-wrap:wrap">
-          <button class="print-btn resume-type active" data-type="master"><i class="fas fa-star"></i> Master</button>
+          <button class="print-btn resume-type" data-type="master"><i class="fas fa-star"></i> Master</button>
           <button class="print-btn resume-type" data-type="game"><i class="fas fa-gamepad"></i> Game Dev</button>
-          <button class="print-btn resume-type" data-type="aids"><i class="fas fa-graduation-cap"></i> AIDS</button>
+          <button class="print-btn resume-type active" data-type="aids"><i class="fas fa-graduation-cap"></i> AIDS</button>
         </div>
         <button class="print-btn" id="printBtn"><i class="fas fa-print"></i> Print / Save PDF</button>
       </div>
     </div>
     <div class="resume-embed">
-      <iframe id="resumeFrame" src="Resume/Master resume.pdf"></iframe>
+      <iframe id="resumeFrame" src="Resume/AIDS.pdf"></iframe>
     </div>
   </div>
   <script>
@@ -108,8 +108,8 @@
     const frame = document.getElementById('resumeFrame');
     const printBtn = document.getElementById('printBtn');
     const files = {
-      master: 'Resume/Master resume.pdf',
-      game: 'Resume/Game Resume.pdf',
+      master: 'Resume/Master_Resume.pdf',
+      game: 'Resume/Game_Resume.pdf',
       aids: 'Resume/AIDS.pdf'
     };
     typeBtns.forEach(btn => {
