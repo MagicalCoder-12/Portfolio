@@ -25,6 +25,19 @@
       --radius: 16px;
       --radius-sm: 8px;
     }
+    body.light-theme {
+      --bg: #f5f5f5;
+      --surface: #ffffff;
+      --surface-hover: #f0f0f0;
+      --border: rgba(0,0,0,0.08);
+      --border-hover: rgba(0,0,0,0.15);
+      --text: #1a1a1a;
+      --text-secondary: #52525b;
+      --text-muted: #a1a1aa;
+      --accent: #0891b2;
+      --accent-2: #7c3aed;
+      --accent-3: #059669;
+    }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 80px; }
@@ -275,6 +288,7 @@
       font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 4px;
       background: rgba(255,255,255,0.04); color: var(--text-muted); font-weight: 500;
     }
+    .p-tag i { margin-right: 0.3rem; font-size: 0.65rem; }
 
     /* ── SKILLS ──────────────────────────────────── */
     .skills-grid {
@@ -355,17 +369,49 @@
     }
     .footer-links a:hover { color: var(--accent); }
 
+    /* ── SCROLL PROGRESS BAR ──────────────────────── */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1001;
+      height: 3px; background: transparent;
+    }
+    .scroll-progress-bar {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width 0.1s ease;
+    }
+
+    /* ── SKELETON SHIMMER ─────────────────────────── */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .skeleton {
+      background: linear-gradient(90deg, var(--surface) 25%, var(--surface-hover) 50%, var(--surface) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: var(--radius-sm);
+    }
+
+    /* ── THEME TOGGLE ─────────────────────────────── */
+    .theme-btn {
+      background: none; border: 1px solid var(--border); border-radius: 8px;
+      width: 36px; height: 36px; display: flex; align-items: center;
+      justify-content: center; color: var(--text-secondary); cursor: pointer;
+      transition: all 0.2s; font-size: 0.9rem; flex-shrink: 0;
+    }
+    .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+
     /* ── BACK TO TOP ─────────────────────────────── */
     .btt {
-      position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
-      width: 44px; height: 44px; border-radius: 10px;
+      position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); z-index: 999;
+      width: 44px; height: 44px; border-radius: 50%;
       background: var(--accent); color: var(--bg); border: none;
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; font-size: 1rem; opacity: 0; visibility: hidden;
       transition: all 0.3s; box-shadow: 0 4px 20px rgba(34,211,238,0.3);
     }
     .btt.show { opacity: 1; visibility: visible; }
-    .btt:hover { transform: translateY(-3px); }
+    .btt:hover { transform: translateX(-50%) translateY(-4px); }
 
     /* ── ANIMATIONS ──────────────────────────────── */
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
@@ -447,6 +493,8 @@
   </style>
 </head>
 <body>
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress"><div class="scroll-progress-bar" id="scrollBar"></div></div>
 
 <!-- ═══ NAVIGATION ═══ -->
   <nav id="navbar">
@@ -457,13 +505,16 @@
         <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
+      <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
       <div class="nav-resume-wrap" style="position:relative;">
         <button class="nav-cta" id="resumeBtn"><i class="fas fa-download" style="font-size:0.75rem"></i> Resume <i class="fas fa-caret-down" style="font-size:0.65rem;margin-left:0.2rem"></i></button>
         <div class="resume-dropdown" id="resumeDropdown">
-          <a href="Resume/latest.pdf" download><i class="fas fa-briefcase"></i> General Resume</a>
-          <a href="Resume/Game Resume.pdf" download><i class="fas fa-gamepad"></i> Game Dev Resume</a>
+          <a href="resume.html" target="_blank"><i class="fas fa-globe"></i> Web Resume (Print)</a>
+          <a href="Resume/latest.pdf" download><i class="fas fa-briefcase"></i> General Resume (PDF)</a>
+          <a href="Resume/Game Resume.pdf" download><i class="fas fa-gamepad"></i> Game Dev Resume (PDF)</a>
         </div>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -489,8 +540,9 @@
           <div class="hero-resume-wrap" style="position:relative;display:inline-flex;">
             <button class="btn btn-outline" id="heroResumeBtn"><i class="fas fa-file-alt"></i> Resume <i class="fas fa-caret-down" style="font-size:0.65rem;margin-left:0.2rem"></i></button>
             <div class="resume-dropdown" id="heroResumeDropdown">
-              <a href="Resume/latest.pdf" download><i class="fas fa-briefcase"></i> General Resume</a>
-              <a href="Resume/Game Resume.pdf" download><i class="fas fa-gamepad"></i> Game Dev Resume</a>
+              <a href="resume.html" target="_blank"><i class="fas fa-globe"></i> Web Resume (Print)</a>
+              <a href="Resume/latest.pdf" download><i class="fas fa-briefcase"></i> General Resume (PDF)</a>
+              <a href="Resume/Game Resume.pdf" download><i class="fas fa-gamepad"></i> Game Dev Resume (PDF)</a>
             </div>
           </div>
         </div>
@@ -780,6 +832,9 @@
       transform: translateY(-4px);
       box-shadow: 0 12px 40px rgba(0,0,0,0.3);
     }
+    .cert-card {
+      cursor: pointer;
+    }
     .cert-card img {
       width: 100%;
       height: 200px;
@@ -794,6 +849,41 @@
       font-weight: 600;
       color: var(--text-secondary);
     }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 95vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: var(--radius);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .lightbox .lb-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+      background: none;
+      border: none;
+      font-family: inherit;
+    }
+    .lightbox .lb-close:hover { opacity: 1; }
   </style>
   <section id="certificates">
     <div class="section-wrap reveal">
@@ -822,6 +912,14 @@
         <div class="cert-card">
           <img src="Certificates/Hack2skill-Certificate.png" alt="Hack2Skill Certificate" loading="lazy">
           <div class="cert-label">Hack2Skill Certificate</div>
+        </div>
+        <div class="cert-card">
+          <img src="Certificates/NILTECH.EDU.jpg" alt="Niltech Edu Certificate" loading="lazy">
+          <div class="cert-label">Niltech Edu</div>
+        </div>
+        <div class="cert-card">
+          <img src="Certificates/SaiKet Systems.jpg" alt="SaiKet Systems Certificate" loading="lazy">
+          <div class="cert-label">SaiKet Systems</div>
         </div>
       </div>
     </div>
@@ -952,6 +1050,12 @@
 
   <button class="btt" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
+  <!-- Lightbox overlay -->
+  <div class="lightbox" id="certLightbox">
+    <button class="lb-close" id="certLightboxClose">&times;</button>
+    <img id="certLightboxImg" alt="">
+  </div>
+
   <script>
     // ── Counter animation ──────────────────────────
     const counters = document.querySelectorAll('.metric-value');
@@ -1037,8 +1141,91 @@
       heroResumeDropdown.classList.remove('open');
     });
 
+    // ── Certificate lightbox ──────────────────────
+    const lightbox = document.getElementById('certLightbox');
+    const lightboxImg = document.getElementById('certLightboxImg');
+    document.querySelectorAll('.cert-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const img = card.querySelector('img');
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('open');
+      });
+    });
+    document.getElementById('certLightboxClose').addEventListener('click', () => {
+      lightbox.classList.remove('open');
+    });
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) lightbox.classList.remove('open');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') lightbox.classList.remove('open');
+    });
+
+    // ── Theme toggle ──────────────────────────────
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.body.classList.add('light-theme');
+      themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-theme');
+      const isLight = document.body.classList.contains('light-theme');
+      themeToggle.innerHTML = isLight ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+
+    // ── Scroll progress bar ────────────────────────
+    const scrollBar = document.getElementById('scrollBar');
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      scrollBar.style.width = pct + '%';
+    });
+
+    // ── Tech icons for p-tags ──────────────────────
+    const iconMap = {
+      'godot': 'fa-cube', 'gdscript': 'fa-code', 'android': 'fa-mobile-alt',
+      'python': 'fab fa-python', 'cli': 'fa-terminal', 'ai': 'fa-brain',
+      'devops': 'fa-cogs', 'automation': 'fa-robot', 'pytorch': 'fa-fire',
+      'minilm': 'fa-microchip', 'nlp': 'fa-language', 'streamlit': 'fa-chart-line',
+      'random forest': 'fa-tree', 'smote': 'fa-filter', 'scikit-learn': 'fa-cogs',
+      'faiss': 'fa-search', 'groq api': 'fa-bolt', 'rag': 'fa-puzzle-piece',
+      'rest api': 'fa-plug', 'pandas': 'fa-table', 'numpy': 'fa-cube',
+      'matplotlib': 'fa-chart-bar', 'react': 'fab fa-react', 'javascript': 'fab fa-js',
+      'vercel': 'fa-cloud', 'html': 'fab fa-html5', 'css': 'fab fa-css3-alt',
+      'mobile': 'fa-mobile-alt', 'racing': 'fa-car', 'web': 'fa-globe',
+      'action': 'fa-crosshairs', 'endless runner': 'fa-running',
+      '2d': 'fa-th', '3d': 'fa-cube', 'rpg': 'fa-dragon',
+      'java': 'fab fa-java', 'tailwind css': 'fab fa-tailwind', 'node.js': 'fab fa-node',
+      'git': 'fab fa-git-alt', 'github': 'fab fa-github', 'docker': 'fab fa-docker',
+      'keras': 'fa-brain', 'tensorflow': 'fa-brain',
+      'sentence transformers': 'fa-language', 'prompt engineering': 'fa-magic',
+      'seaborn': 'fa-chart-bar', 'html5': 'fab fa-html5', 'css3-alt': 'fab fa-css3-alt',
+      'game': 'fa-gamepad',
+    };
+    document.querySelectorAll('.p-tag').forEach(tag => {
+      const key = tag.textContent.trim().toLowerCase();
+      for (const [k, icon] of Object.entries(iconMap)) {
+        if (key.includes(k)) {
+          tag.innerHTML = `<i class="${icon}"></i> ${tag.textContent.trim()}`;
+          break;
+        }
+      }
+    });
+
+    // ── Remove skeleton on image load ──────────────
+    document.querySelectorAll('img').forEach(img => {
+      if (img.complete) return;
+      img.classList.add('skeleton');
+      img.addEventListener('load', () => img.classList.remove('skeleton'));
+      img.addEventListener('error', () => img.classList.remove('skeleton'));
+    });
+
     // ── Year ───────────────────────────────────────
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
 </body>
 </html>
