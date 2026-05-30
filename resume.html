@@ -11,12 +11,9 @@
     :root {
       --bg: #0a0a1a;
       --surface: #12122a;
-      --text: #e0e0e0;
-      --text-dim: #999;
       --accent: #00ffff;
       --accent2: #9d00ff;
       --border: rgba(0, 255, 255, 0.15);
-      --card-bg: rgba(18, 18, 42, 0.8);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,13 +21,13 @@
     body {
       font-family: 'Space Grotesk', sans-serif;
       background: var(--bg);
-      color: var(--text);
+      color: #e0e0e0;
       line-height: 1.6;
       padding: 2rem 1rem;
     }
 
     .resume {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
       background: var(--surface);
       border-radius: 16px;
@@ -38,10 +35,8 @@
       overflow: hidden;
     }
 
-    /* Print Button */
     .print-bar {
       display: flex;
-      justify-content: flex-end;
       padding: 1rem 2rem;
       border-bottom: 1px solid var(--border);
     }
@@ -50,488 +45,83 @@
       background: transparent;
       border: 1px solid var(--accent);
       color: var(--accent);
-      padding: 0.5rem 1.2rem;
+      padding: 0.45rem 1rem;
       border-radius: 6px;
       cursor: pointer;
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       transition: all 0.3s;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
     }
 
-    .print-btn:hover {
-      background: var(--accent);
-      color: #000;
+    .print-btn:hover { background: var(--accent); color: #000; }
+    .print-btn.active { background: var(--accent); color: #000; }
+
+    .resume-embed {
+      height: calc(100vh - 140px);
+      min-height: 600px;
     }
 
-    /* Header */
-    .resume-header {
-      text-align: center;
-      padding: 2.5rem 2rem 1.5rem;
+    .resume-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
-    .resume-header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: -0.5px;
-    }
-
-    .resume-header .title {
-      font-size: 1.05rem;
-      color: var(--accent2);
-      font-weight: 500;
-      margin: 0.25rem 0 1rem;
-    }
-
-    .contact-row {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.75rem 1.5rem;
-      font-size: 0.9rem;
-      color: var(--text-dim);
-    }
-
-    .contact-row a {
-      color: var(--text-dim);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .contact-row a:hover {
-      color: var(--accent);
-    }
-
-    .contact-row i {
-      width: 1rem;
-      color: var(--accent);
-      margin-right: 0.3rem;
-    }
-
-    /* Body */
-    .resume-body {
-      padding: 0 2rem 2rem;
-    }
-
-    .section {
-      margin-bottom: 1.75rem;
-    }
-
-    .section-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0.4rem;
-      margin-bottom: 1rem;
-    }
-
-    .section-title i {
-      margin-right: 0.5rem;
-      color: var(--accent2);
-    }
-
-    /* Experience */
-    .entry {
-      margin-bottom: 1.25rem;
-    }
-
-    .entry:last-child {
-      margin-bottom: 0;
-    }
-
-    .entry-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 0.25rem 1rem;
-    }
-
-    .entry-company {
-      font-weight: 600;
-      font-size: 1rem;
-      color: #fff;
-    }
-
-    .entry-role {
-      font-size: 0.9rem;
-      color: var(--accent2);
-      font-weight: 500;
-    }
-
-    .entry-date {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.78rem;
-      color: var(--text-dim);
-      white-space: nowrap;
-    }
-
-    .entry-desc {
-      font-size: 0.88rem;
-      color: var(--text-dim);
-      margin-top: 0.25rem;
-    }
-
-    /* Education */
-    .edu-row {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.25rem 1rem;
-    }
-
-    .edu-school {
-      font-weight: 600;
-      color: #fff;
-    }
-
-    .edu-degree {
-      font-size: 0.9rem;
-      color: var(--text-dim);
-    }
-
-    .edu-detail {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--text-dim);
-    }
-
-    /* Skills */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .skill-group h4 {
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--accent2);
-      margin-bottom: 0.3rem;
-    }
-
-    .skill-group p {
-      font-size: 0.88rem;
-      color: var(--text-dim);
-      line-height: 1.7;
-    }
-
-    /* Projects Overview */
-    .project-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
-    }
-
-    .project-item {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      transition: all 0.3s;
-    }
-
-    .project-item:hover {
-      border-color: var(--accent);
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
-    }
-
-    .project-item h4 {
-      font-size: 0.92rem;
-      color: var(--accent);
-      margin-bottom: 0.2rem;
-    }
-
-    .project-item p {
-      font-size: 0.82rem;
-      color: var(--text-dim);
-    }
-
-    .project-item .tech {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--accent2);
-      margin-top: 0.25rem;
-    }
-
-    /* Print Styles */
     @media print {
-      @page {
-        margin: 0.5in;
-        size: A4;
-      }
-
-      body {
-        background: #fff;
-        color: #000;
-        padding: 0;
-      }
-
-      .resume {
-        max-width: 100%;
-        background: #fff;
-        box-shadow: none;
-        border-radius: 0;
-      }
-
-      .print-bar {
-        display: none;
-      }
-
-      .print-btn {
-        display: none;
-      }
-
-      .resume-header h1 {
-        color: #000;
-      }
-
-      .resume-header .title {
-        color: #555;
-      }
-
-      .contact-row {
-        color: #555;
-      }
-
-      .contact-row a {
-        color: #333;
-      }
-
-      .contact-row i {
-        color: #333;
-      }
-
-      .section-title {
-        color: #000;
-        border-bottom-color: #ccc;
-      }
-
-      .section-title i {
-        color: #555;
-      }
-
-      .entry-company {
-        color: #000;
-      }
-
-      .entry-role {
-        color: #555;
-      }
-
-      .entry-date {
-        color: #666;
-      }
-
-      .entry-desc {
-        color: #333;
-      }
-
-      .edu-school {
-        color: #000;
-      }
-
-      .edu-degree {
-        color: #333;
-      }
-
-      .edu-detail {
-        color: #555;
-      }
-
-      .skill-group h4 {
-        color: #555;
-      }
-
-      .skill-group p {
-        color: #333;
-      }
-
-      .project-item {
-        background: #f9f9f9;
-        border-color: #ddd;
-        box-shadow: none;
-      }
-
-      .project-item h4 {
-        color: #000;
-      }
-
-      .project-item p {
-        color: #333;
-      }
-
-      .project-item .tech {
-        color: #555;
-      }
-
-      .project-item:hover {
-        border-color: #ddd;
-        box-shadow: none;
-      }
-
-      a {
-        color: #000;
-        text-decoration: none;
-      }
-
-      .section {
-        page-break-inside: avoid;
-      }
-
-      .entry {
-        page-break-inside: avoid;
-      }
+      @page { margin: 0; }
+      body { background: #fff; padding: 0; }
+      .resume { max-width: 100%; box-shadow: none; border-radius: 0; background: #fff; }
+      .print-bar { display: none; }
+      .resume-embed { height: auto; min-height: auto; }
+      .resume-embed iframe { height: 100vh; }
     }
 
-    @media (max-width: 700px) {
-      .resume-header h1 { font-size: 1.8rem; }
-      .contact-row { font-size: 0.8rem; gap: 0.4rem 1rem; }
-      .resume-body { padding: 0 1.25rem 1.5rem; }
-      .skills-grid { grid-template-columns: 1fr; }
-      .project-list { grid-template-columns: 1fr; }
-      .entry-header { flex-direction: column; gap: 0; }
-      .print-bar { padding: 0.75rem 1.25rem; }
+    @media (max-width: 600px) {
+      body { padding: 0.5rem; }
+      .print-bar { padding: 0.75rem 1rem; }
+      .print-btn { font-size: 0.75rem; padding: 0.35rem 0.7rem; }
+      .resume-embed { height: calc(100vh - 100px); min-height: 400px; }
     }
   </style>
 </head>
 <body>
   <div class="resume">
     <div class="print-bar">
-      <button class="print-btn" onclick="window.print()">
-        <i class="fas fa-print"></i> Print / Save PDF
-      </button>
-    </div>
-
-    <div class="resume-header">
-      <h1>Ajith Kuppam</h1>
-      <div class="title">Game Developer &middot; AI/ML Engineer &middot; Data Analyst</div>
-      <div class="contact-row">
-        <span><i class="fas fa-envelope"></i> <a href="mailto:kuppamajith@gmail.com">kuppamajith@gmail.com</a></span>
-        <span><i class="fas fa-phone"></i> +91 9490957410</span>
-        <span><i class="fas fa-map-marker-alt"></i> India</span>
-        <span><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/ajithkuppam" target="_blank">linkedin.com/in/ajithkuppam</a></span>
-        <span><i class="fab fa-github"></i> <a href="https://github.com/MagicalCoder-12" target="_blank">github.com/MagicalCoder-12</a></span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;width:100%;justify-content:space-between;align-items:center">
+        <div style="display:flex;gap:0.4rem;flex-wrap:wrap">
+          <button class="print-btn resume-type active" data-type="master"><i class="fas fa-star"></i> Master</button>
+          <button class="print-btn resume-type" data-type="game"><i class="fas fa-gamepad"></i> Game Dev</button>
+          <button class="print-btn resume-type" data-type="aids"><i class="fas fa-graduation-cap"></i> AIDS</button>
+        </div>
+        <button class="print-btn" id="printBtn"><i class="fas fa-print"></i> Print / Save PDF</button>
       </div>
     </div>
-
-    <div class="resume-body">
-      <!-- Experience -->
-      <div class="section">
-        <div class="section-title"><i class="fas fa-briefcase"></i> Experience</div>
-
-        <div class="entry">
-          <div class="entry-header">
-            <span class="entry-company">KALNET GLOBAL <span class="entry-role">&mdash; Backend Developer</span></span>
-            <span class="entry-date">Mar 2026 &ndash; Present</span>
-          </div>
-          <div class="entry-desc">Building and maintaining automation pipelines with AI integration to streamline backend processes.</div>
-        </div>
-
-        <div class="entry">
-          <div class="entry-header">
-            <span class="entry-company">Broadbased Games <span class="entry-role">&mdash; Game Developer</span></span>
-            <span class="entry-date">Jul 2025 &ndash; Present</span>
-          </div>
-          <div class="entry-desc">Developing an isometric mapping system for game environments, optimizing spatial representation and rendering.</div>
-        </div>
-
-        <div class="entry">
-          <div class="entry-header">
-            <span class="entry-company">Qskill <span class="entry-role">&mdash; ML Trainee</span></span>
-            <span class="entry-date">Jan &ndash; Feb 2026</span>
-          </div>
-          <div class="entry-desc">Built an Iris classification model using supervised learning techniques. Gained hands-on experience with dataset preprocessing, model evaluation, and deployment.</div>
-        </div>
-
-        <div class="entry">
-          <div class="entry-header">
-            <span class="entry-company">Hopscotch Games <span class="entry-role">&mdash; Vibe Coder</span></span>
-            <span class="entry-date">Sep &ndash; Oct 2025</span>
-          </div>
-          <div class="entry-desc">Leveraged AI-driven tools for rapid game asset generation, accelerating prototyping and creative iteration cycles.</div>
-        </div>
-
-        <div class="entry">
-          <div class="entry-header">
-            <span class="entry-company">GenZ Educate Wing <span class="entry-role">&mdash; ML Engineer</span></span>
-            <span class="entry-date">Jan &ndash; Mar 2025</span>
-          </div>
-          <div class="entry-desc">Developed a credit card fraud detection system using ensemble learning and imbalanced-data techniques to identify fraudulent transactions.</div>
-        </div>
-
-        <div class="entry">
-          <div class="entry-header">
-            <span class="entry-company">Niltech Edu <span class="entry-role">&mdash; ML Intern</span></span>
-            <span class="entry-date">Dec 2023</span>
-          </div>
-          <div class="entry-desc">Built predictive models on structured datasets, focusing on data cleaning, feature engineering, and model tuning.</div>
-        </div>
-      </div>
-
-      <!-- Education -->
-      <div class="section">
-        <div class="section-title"><i class="fas fa-graduation-cap"></i> Education</div>
-        <div class="edu-row">
-          <span class="edu-school">St. Martin's Engineering College</span>
-          <span class="edu-detail">CGPA: 8.02</span>
-        </div>
-        <div class="edu-degree">B.Tech in Artificial Intelligence &amp; Data Science</div>
-      </div>
-
-      <!-- Skills -->
-      <div class="section">
-        <div class="section-title"><i class="fas fa-code"></i> Skills</div>
-        <div class="skills-grid">
-          <div class="skill-group">
-            <h4>Game Development</h4>
-            <p>Godot, GDScript, Unity, Pygame, 2D/3D Design, Isometric Mapping</p>
-          </div>
-          <div class="skill-group">
-            <h4>Machine Learning &amp; AI</h4>
-            <p>Python, TensorFlow, Keras, PyTorch, Scikit-learn, NLP, Prompt Engineering, Fraud Detection</p>
-          </div>
-          <div class="skill-group">
-            <h4>Web &amp; Tools</h4>
-            <p>Java, HTML, CSS, React, Node.js, Git, Docker, Vercel, CI/CD Pipelines</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Projects Overview -->
-      <div class="section">
-        <div class="section-title"><i class="fas fa-folder-open"></i> Projects</div>
-        <div class="project-list">
-          <div class="project-item">
-            <h4>Shadow Avengers</h4>
-            <p>Chicken Invaders-style shooter for Android. Built in Unity, rebuilt in Godot. 100+ downloads.</p>
-            <div class="tech">Godot &middot; GDScript &middot; Android</div>
-          </div>
-          <div class="project-item">
-            <h4>Iris Classification</h4>
-            <p>Supervised ML model classifying iris species. Full pipeline from preprocessing to evaluation.</p>
-            <div class="tech">Python &middot; Scikit-learn &middot; Pandas</div>
-          </div>
-          <div class="project-item">
-            <h4>Credit Card Fraud Detection</h4>
-            <p>Ensemble model detecting fraudulent transactions using imbalanced-data techniques.</p>
-            <div class="tech">Python &middot; XGBoost &middot; Imbalanced-learn</div>
-          </div>
-          <div class="project-item">
-            <h4>Isometric Mapping System</h4>
-            <p>Tile-based isometric rendering system for game environments with optimized spatial logic.</p>
-            <div class="tech">Godot &middot; GDScript &middot; 2D/3D</div>
-          </div>
-        </div>
-      </div>
+    <div class="resume-embed">
+      <iframe id="resumeFrame" src="Resume/Master resume.pdf"></iframe>
     </div>
   </div>
+  <script>
+    const typeBtns = document.querySelectorAll('.resume-type');
+    const frame = document.getElementById('resumeFrame');
+    const printBtn = document.getElementById('printBtn');
+    const files = {
+      master: 'Resume/Master resume.pdf',
+      game: 'Resume/Game Resume.pdf',
+      aids: 'Resume/AIDS.pdf'
+    };
+    typeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        typeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        frame.src = files[btn.dataset.type];
+      });
+    });
+    printBtn.addEventListener('click', () => {
+      frame.contentWindow.print();
+    });
+  </script>
 </body>
 </html>
