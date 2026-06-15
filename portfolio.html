@@ -895,35 +895,8 @@
         <h2>Certificates</h2>
         <p>Professional certifications and achievements.</p>
       </div>
-      <div class="certs-grid">
-        <div class="cert-card">
-          <img src="Certificates/NILTECH.EDU.jpg" alt="Niltech Edu Certificate" loading="lazy">
-          <div class="cert-label">Niltech Edu</div>
-        </div>
-        <div class="cert-card">
-          <img src="Certificates/GenzIntern.jpg" alt="GenZ Internship Certificate" loading="lazy">
-          <div class="cert-label">GenZ Internship</div>
-        </div>
-        <div class="cert-card">
-          <img src="Certificates/GenzTrain.jpg" alt="GenZ Training Certificate" loading="lazy">
-          <div class="cert-label">GenZ Training</div>
-        </div>
-        <div class="cert-card">
-          <img src="Certificates/Hack2skill-Certificate.png" alt="Hack2Skill Certificate" loading="lazy">
-          <div class="cert-label">Hack2Skill Hackathon</div>
-        </div>
-        <div class="cert-card">
-          <img src="Certificates/QAI_certificate.jpg" alt="QAI Certificate" loading="lazy">
-          <div class="cert-label">QSkill AI/ML Internship</div>
-        </div>
-        <div class="cert-card">
-          <img src="Certificates/Qai_LOI_page.jpg" alt="QAI LOI Page" loading="lazy">
-          <div class="cert-label">QSkill Letter of Intent</div>
-        </div>
-        <div class="cert-card">
-          <img src="Certificates/SaiKet Systems.jpg" alt="SaiKet Systems Certificate" loading="lazy">
-          <div class="cert-label">SaiKet Systems</div>
-        </div>
+      <div class="certs-grid" id="certsGrid">
+        <!-- Dynamically populated by JavaScript -->
       </div>
     </div>
   </section>
@@ -1095,6 +1068,30 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
+    // ── Certificates (data-driven) ──────────────────
+    const certificatesData = [
+      { file: 'NILTECH.EDU.jpg', label: 'Niltech Edu' },
+      { file: 'GenzIntern.jpg', label: 'GenZ Internship' },
+      { file: 'GenzTrain.jpg', label: 'GenZ Training' },
+      { file: 'Hack2skill-Certificate.png', label: 'Hack2Skill Hackathon' },
+      { file: 'QAI_certificate.jpg', label: 'QSkill AI/ML Internship' },
+      { file: 'Qai_LOI_page.jpg', label: 'QSkill Letter of Intent' },
+      { file: 'SaiKet Systems.jpg', label: 'SaiKet Systems' },
+      // Just add new certificates here!
+      // { file: 'new-certificate.jpg', label: 'Certificate Name' }
+    ];
+
+    const certsGrid = document.getElementById('certsGrid');
+    certificatesData.forEach(cert => {
+      const certCard = document.createElement('div');
+      certCard.className = 'cert-card';
+      certCard.innerHTML = `
+        <img src="Certificates/${cert.file}" alt="${cert.label} Certificate" loading="lazy">
+        <div class="cert-label">${cert.label}</div>
+      `;
+      certsGrid.appendChild(certCard);
+    });
+
     // ── Nav scroll + back-to-top ───────────────────
     const nav = document.getElementById('navbar');
     const btt = document.getElementById('backToTop');
@@ -1158,14 +1155,19 @@
     // ── Certificate lightbox ──────────────────────
     const lightbox = document.getElementById('certLightbox');
     const lightboxImg = document.getElementById('certLightboxImg');
-    document.querySelectorAll('.cert-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const img = card.querySelector('img');
+    const certsGridContainer = document.getElementById('certsGrid');
+    
+    // Use event delegation to handle dynamically created cards
+    certsGridContainer.addEventListener('click', (e) => {
+      const certCard = e.target.closest('.cert-card');
+      if (certCard) {
+        const img = certCard.querySelector('img');
         lightboxImg.src = img.src;
         lightboxImg.alt = img.alt;
         lightbox.classList.add('open');
-      });
+      }
     });
+    
     document.getElementById('certLightboxClose').addEventListener('click', () => {
       lightbox.classList.remove('open');
     });
