@@ -8,7 +8,7 @@ A personal portfolio website showcasing my games, machine learning projects, and
 
 ## About Me
 
-I'm a B.Tech student in AI & Data Science at St. Martin's Engineering College (CGPA 8.02). I've worked as a Game Developer at Broadbased Games, Vibe Coder at Hopscotch Games, and ML Engineer at GenZ Educate Wing. I build games in Godot, ML models with Scikit-learn/PyTorch, and web apps with React.
+I'm a B.Tech student in AI & Data Science at St. Martin's Engineering College (CGPA 8.15). I've worked as a Game Developer at Broadbased Games, Vibe Coder at Hopscotch Games, and ML Engineer at GenZ Educate Wing. I build games in Godot, ML models with Scikit-learn/PyTorch, and web apps with React.
 
 ---
 
