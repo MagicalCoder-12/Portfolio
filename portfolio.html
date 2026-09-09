@@ -4,6 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Ajith Kuppam - Game Developer, ML Engineer & Web Developer. Published game developer on Google Play with expertise in Godot, Python ML, and modern web technologies.">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:title" content="Ajith Kuppam — Developer Portfolio">
+  <meta property="og:description" content="Game Developer · AI/ML Engineer · Data Analyst. Games on Google Play, ML models, AI web apps.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/me.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Ajith Kuppam — Developer Portfolio">
+  <meta name="twitter:description" content="Game Developer · AI/ML Engineer · Data Analyst.">
+  <link rel="icon" type="image/png" href="assets/dev_icon_resized.png">
+  <link rel="apple-touch-icon" href="assets/dev_icon_resized.png">
   <title>Ajith Kuppam — Developer Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -202,6 +212,38 @@
     .float-badge.game i { color: var(--accent); }
     .float-badge.ml i { color: var(--accent-3); }
     .float-badge.web i { color: var(--accent-2); }
+
+    /* ── LOGO ANIMATION MODAL ─────────────────── */
+    .avatar-inner.clickable { cursor: pointer; }
+    .avatar-inner.clickable:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    .pf-modal {
+      position: fixed; inset: 0; z-index: 2000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .pf-modal.open { opacity: 1; visibility: visible; }
+    .pf-modal-content {
+      position: relative; width: min(720px, 92vw);
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border-hover);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      background: #000;
+    }
+    .pf-modal-content video { display: block; width: 100%; height: auto; background: #000; }
+    .pf-modal-close {
+      position: absolute; top: 8px; right: 8px;
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(0,0,0,0.6); color: #fff;
+      font-size: 1.1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-family: inherit;
+    }
+    .pf-modal-close:hover { border-color: var(--accent); color: var(--accent); }
 
     /* ── METRICS STRIP ───────────────────────────── */
     .metrics {
@@ -515,9 +557,9 @@
         <button class="nav-cta" id="resumeBtn"><i class="fas fa-download" style="font-size:0.75rem"></i> Resume <i class="fas fa-caret-down" style="font-size:0.65rem;margin-left:0.2rem"></i></button>
         <div class="resume-dropdown" id="resumeDropdown">
           <a href="resume.html" target="_blank"><i class="fas fa-globe"></i> Web Resume (Print)</a>
-          <a href="Resume/Master_Resume.pdf" download="Master_Resume.pdf"><i class="fas fa-star"></i> Master Resume (PDF)</a>
+          <a href="Resume/Master_resume.pdf" download="Master_resume.pdf"><i class="fas fa-star"></i> Master Resume (PDF)</a>
           <a href="Resume/Game_Resume.pdf" download="Game_Resume.pdf"><i class="fas fa-gamepad"></i> Game Dev Resume (PDF)</a>
-          <a href="Resume/AIDS.pdf" download="AIDS.pdf"><i class="fas fa-graduation-cap"></i> AIDS Resume (PDF)</a>
+          <a href="Resume/AI_Resume.pdf" download="AI_Resume.pdf"><i class="fas fa-graduation-cap"></i> AI Resume (PDF)</a>
         </div>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -544,9 +586,9 @@
             <button class="btn btn-outline" id="heroResumeBtn"><i class="fas fa-file-alt"></i> Resume <i class="fas fa-caret-down" style="font-size:0.65rem;margin-left:0.2rem"></i></button>
             <div class="resume-dropdown" id="heroResumeDropdown">
               <a href="resume.html" target="_blank"><i class="fas fa-globe"></i> Web Resume (Print)</a>
-              <a href="Resume/Master_Resume.pdf" download="Master_Resume.pdf"><i class="fas fa-star"></i> Master Resume (PDF)</a>
+              <a href="Resume/Master_resume.pdf" download="Master_resume.pdf"><i class="fas fa-star"></i> Master Resume (PDF)</a>
               <a href="Resume/Game_Resume.pdf" download="Game_Resume.pdf"><i class="fas fa-gamepad"></i> Game Dev Resume (PDF)</a>
-              <a href="Resume/AIDS.pdf" download="AIDS.pdf"><i class="fas fa-graduation-cap"></i> AIDS Resume (PDF)</a>
+              <a href="Resume/AI_Resume.pdf" download="AI_Resume.pdf"><i class="fas fa-graduation-cap"></i> AI Resume (PDF)</a>
             </div>
           </div>
         </div>
@@ -562,8 +604,8 @@
       <div class="hero-right">
         <div class="hero-visual">
           <div class="avatar-ring">
-            <div class="avatar-inner">
-              <img src="assets/me.jpg" alt="Ajith Kuppam" onerror="this.parentElement.innerHTML='<i class=\'fas fa-user\' style=\'font-size:4rem;color:var(--accent)\'></i>'">
+            <div class="avatar-inner clickable" id="pfAvatar" role="button" tabindex="0" title="Play logo animation" aria-haspopup="dialog">
+              <img src="assets/me.jpg" alt="Ajith Kuppam - press to play logo animation" onerror="this.parentElement.innerHTML='<i class=\'fas fa-user\' style=\'font-size:4rem;color:var(--accent)\'></i>'">
             </div>
           </div>
           <div class="float-badge game"><i class="fas fa-gamepad"></i> Game Dev</div>
@@ -573,6 +615,14 @@
       </div>
     </div>
   </section>
+
+  <!-- ═══ LOGO ANIMATION MODAL ═══ -->
+  <div class="pf-modal" id="pfLogoModal" role="dialog" aria-modal="true" aria-label="Logo animation video" aria-hidden="true">
+    <div class="pf-modal-content">
+      <button class="pf-modal-close" id="pfLogoClose" aria-label="Close logo animation">&times;</button>
+      <video id="pfLogoVideo" src="assets/logo_animation.mp4" poster="assets/dev_icon_resized.png" controls playsinline preload="none"></video>
+    </div>
+  </div>
 
   <!-- ═══ METRICS ═══ -->
   <div class="metrics">
@@ -1106,6 +1156,7 @@
       { file: 'BroadbasedGames.jpg', label: 'Broadbased Games Certificate' },
       { file: 'BroadbasedGames_LOI.jpg', label: 'Broadbased Games Experience Letter' },
       { file: 'college.jpeg', label: 'College Achievement' },
+      { file: 'Kalnet.png', label: 'KALNET Global Internship' },
       // Just add new certificates here!
       // { file: 'new-certificate.jpg', label: 'Certificate Name' }
     ];
@@ -1208,6 +1259,43 @@
     });
 
     // ── Theme toggle ──────────────────────────────
+    // ── Logo animation on avatar ────────────────
+    const pfAvatar = document.getElementById('pfAvatar');
+    const pfModal = document.getElementById('pfLogoModal');
+    const pfVideo = document.getElementById('pfLogoVideo');
+    const pfClose = document.getElementById('pfLogoClose');
+    function openPfModal() {
+      if (!pfModal || !pfVideo) return;
+      pfModal.classList.add('open');
+      pfModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      pfVideo.currentTime = 0;
+      const pp = pfVideo.play();
+      if (pp && typeof pp.catch === 'function') pp.catch(() => {});
+      if (pfClose) pfClose.focus();
+    }
+    function closePfModal() {
+      if (!pfModal || !pfVideo) return;
+      pfVideo.pause();
+      pfVideo.currentTime = 0;
+      pfModal.classList.remove('open');
+      pfModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (pfAvatar) pfAvatar.focus();
+    }
+    if (pfAvatar && pfModal) {
+      pfAvatar.addEventListener('click', openPfModal);
+      pfAvatar.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPfModal(); }
+      });
+      pfModal.addEventListener('click', (e) => { if (e.target === pfModal) closePfModal(); });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && pfModal.classList.contains('open')) closePfModal();
+      });
+    }
+    if (pfClose) pfClose.addEventListener('click', closePfModal);
+    if (pfVideo) pfVideo.addEventListener('ended', closePfModal);
+
     const themeToggle = document.getElementById('themeToggle');
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {

@@ -3,6 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AJI Creators — indie game dev studio crafting immersive mobile games with Godot and Unity. Play Shadow Avengers, Dino Birthday, Slime Race, Swim Bomber and Beach Cleanup.">
+  <meta name="theme-color" content="#0a0a1a">
+  <meta property="og:title" content="AJI Creators | Game Development Studio">
+  <meta property="og:description" content="Crafting immersive game experiences — mobile games built with Godot & Unity.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/dev_icon_resized.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AJI Creators | Game Development Studio">
+  <meta name="twitter:description" content="Crafting immersive game experiences — mobile games built with Godot & Unity.">
+  <meta name="twitter:image" content="assets/dev_icon_resized.png">
+  <link rel="icon" type="image/png" href="assets/dev_icon_resized.png">
+  <link rel="apple-touch-icon" href="assets/dev_icon_resized.png">
   <title>AJI Creators | Game Development Studio</title>
   <style>
     :root {
@@ -21,11 +33,6 @@
       padding: 0;
     }
     img { max-width: 100%; height: auto; }
-    
-    @font-face {
-      font-family: 'Cyberpunk';
-      src: url('https://fonts.cdnfonts.com/css/cyberpunk') format('woff2');
-    }
     
     body {
       font-family: 'Segoe UI', 'Roboto', sans-serif;
@@ -168,7 +175,7 @@
       font-size: 3rem;
       margin: 1rem 0;
       color: var(--neon-blue);
-      font-family: 'Cyberpunk', sans-serif;
+      font-family: 'Orbitron', 'Segoe UI', sans-serif;
       letter-spacing: 2px;
       position: relative;
       display: inline-block;
@@ -233,7 +240,7 @@
       transition: color, background-color, border-color, transform, box-shadow, opacity 0.3s ease;
       position: relative;
       overflow: hidden;
-      font-family: 'Cyberpunk', sans-serif;
+      font-family: 'Orbitron', 'Segoe UI', sans-serif;
       letter-spacing: 1px;
     }
     
@@ -316,7 +323,7 @@
       margin-top: 0;
       border-bottom: 1px solid rgba(0, 255, 255, 0.3);
       padding-bottom: 0.5rem;
-      font-family: 'Cyberpunk', sans-serif;
+      font-family: 'Orbitron', 'Segoe UI', sans-serif;
       letter-spacing: 1px;
       position: relative;
     }
@@ -456,6 +463,80 @@
     .game-card:hover .game-image {
       transform: scale(1.05);
     }
+
+    /* Game search */
+    .game-search-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      max-width: 420px;
+      margin-top: 1rem;
+      padding: 0.55rem 0.9rem;
+      border: 1px solid rgba(0, 255, 255, 0.25);
+      border-radius: 8px;
+      background: rgba(0, 255, 255, 0.04);
+      color: var(--neon-blue);
+    }
+    .game-search-wrap input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-color);
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+    .game-search-wrap input::placeholder { color: rgba(224, 224, 224, 0.45); }
+    .no-games-msg {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 2rem 1rem;
+      color: rgba(224, 224, 224, 0.6);
+      border: 1px dashed rgba(0, 255, 255, 0.3);
+      border-radius: 10px;
+    }
+
+    /* 3D tilt */
+    .game-card.tilting { transition: transform 0.1s ease, box-shadow 0.3s ease; will-change: transform; }
+
+    /* Sound toggle */
+    .sound-toggle {
+      position: fixed;
+      bottom: 15px;
+      left: 15px;
+      z-index: 1500;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 255, 255, 0.4);
+      background: rgba(10, 10, 26, 0.85);
+      color: var(--neon-blue);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sound-toggle:hover { box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); }
+    .sound-toggle[aria-pressed="false"] { opacity: 0.55; }
+
+    /* Contact form status */
+    #formStatus { min-height: 1.4em; font-size: 0.9rem; margin: 0; }
+    #formStatus.success { color: #00ffcc; }
+    #formStatus.error { color: #ff6b6b; }
+    #sendBtn:disabled { opacity: 0.6; cursor: wait; }
+
+    /* Terminal typing caret */
+    .typing-caret {
+      display: inline-block;
+      width: 0.55em;
+      height: 1em;
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      background: var(--neon-blue);
+      animation: caretBlink 0.8s step-end infinite;
+    }
+    @keyframes caretBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     
     .game-info {
       padding: 1.5rem;
@@ -508,7 +589,7 @@
       font-size: 1.5rem;
       margin: 0 0 0.5rem 0;
       color: var(--neon-blue);
-      font-family: 'Cyberpunk', sans-serif;
+      font-family: 'Orbitron', 'Segoe UI', sans-serif;
       letter-spacing: 1px;
     }
     
@@ -932,7 +1013,10 @@
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.cdnfonts.com/css/cyberpunk" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -1008,11 +1092,14 @@
     <section id="games">
       <h2>MY GAMES</h2>
       <p>Explore my growing portfolio of immersive gaming experiences:</p>
-      
-  <div class="games-grid">
+      <div class="game-search-wrap">
+        <i class="fas fa-search" aria-hidden="true"></i>
+        <input type="search" id="gameSearch" placeholder="Search games..." aria-label="Search games">
+      </div>
+  <div class="games-grid" id="gamesGrid">
     <div class="game-card featured">
       <div class="featured-badge"><i class="fas fa-crown"></i> Featured</div>
-      <img src="assets/app_icon_resized.png" alt="Shadow Avengers" class="game-image">
+      <img src="assets/app_icon_resized.png" alt="Shadow Avengers" class="game-image" loading="lazy" decoding="async">
       <div class="game-info">
         <h3 class="game-title">SHADOW AVENGERS</h3>
         <div class="game-stats">
@@ -1033,7 +1120,7 @@
     </div>
 
     <div class="game-card">
-      <img src="assets/Dino.jpg" alt="Dino Birthday" class="game-image">
+      <img src="assets/Dino.jpg" alt="Dino Birthday" class="game-image" loading="lazy" decoding="async">
       <div class="game-info">
         <h3 class="game-title">Dino Birthday</h3>
         <div class="game-stats">
@@ -1050,7 +1137,7 @@
     </div>
 
     <div class="game-card">
-      <img src="assets/Slime.png" alt="Slime Race" class="game-image">
+      <img src="assets/Slime.png" alt="Slime Race" class="game-image" loading="lazy" decoding="async">
       <div class="game-info">
         <h3 class="game-title">SLIME RACE</h3>
         <div class="game-stats">
@@ -1068,7 +1155,7 @@
     </div>
 
     <div class="game-card">
-      <img src="assets/Swim Bomber.png" alt="Swim Bomber" class="game-image">
+      <img src="assets/Swim Bomber.png" alt="Swim Bomber" class="game-image" loading="lazy" decoding="async">
       <div class="game-info">
         <h3 class="game-title">SWIM BOMBER</h3>
         <div class="game-stats">
@@ -1086,7 +1173,7 @@
     </div>
 
     <div class="game-card">
-      <img src="assets/Beach_cleanup.png" alt="Beach Cleanup" class="game-image">
+      <img src="assets/Beach_cleanup.png" alt="Beach Cleanup" class="game-image" loading="lazy" decoding="async">
       <div class="game-info">
         <h3 class="game-title">BEACH CLEANUP</h3>
         <div class="game-stats">
@@ -1106,7 +1193,7 @@
 
     <div class="game-card">
       <div class="dev-badge"><i class="fas fa-code"></i> In Dev</div>
-      <img src="https://placehold.co/600x400/1a1a3a/00ffff?text=COMING+SOON" alt="Coming Soon" class="game-image">
+      <img src="https://placehold.co/600x400/1a1a3a/00ffff?text=COMING+SOON" alt="Coming Soon" class="game-image" loading="lazy" decoding="async">
       <div class="game-info">
         <h3 class="game-title">SOLAR NEXUS</h3>
         <p class="game-description">A futuristic RPG adventure currently in development. Stay tuned for updates!</p>
@@ -1121,7 +1208,7 @@
 
     <div class="game-card">
       <div class="dev-badge"><i class="fas fa-code"></i> Prototype</div>
-      <img src="https://placehold.co/600x400/1a1a3a/00ffff?text=VR+PROTOTYPE" alt="VR Puzzle Game" class="game-image">
+      <img src="https://placehold.co/600x400/1a1a3a/00ffff?text=VR+PROTOTYPE" alt="VR Puzzle Game" class="game-image" loading="lazy" decoding="async">
       <div class="game-info">
         <h3 class="game-title">VR PUZZLE GAME</h3>
         <div class="game-stats">
@@ -1216,7 +1303,8 @@
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="5" required></textarea>
           </div>
-          <button type="submit">SEND MESSAGE</button>
+          <button type="submit" id="sendBtn">SEND MESSAGE</button>
+          <p id="formStatus" role="status" aria-live="polite"></p>
         </div>
       </form>
     </section>
@@ -1236,7 +1324,7 @@
   <div class="logo-modal" id="logoModal" role="dialog" aria-modal="true" aria-label="Logo animation video" aria-hidden="true">
     <div class="logo-modal-content">
       <button class="logo-modal-close" id="logoModalClose" aria-label="Close logo animation">&times;</button>
-      <video id="logoAnimationVideo" src="assets/logo_animation.mp4" controls playsinline preload="none"></video>
+      <video id="logoAnimationVideo" src="assets/logo_animation.mp4" poster="assets/dev_icon_resized.png" controls playsinline preload="none"></video>
     </div>
   </div>
 
@@ -1244,6 +1332,13 @@
   <div class="back-to-top" id="backToTop">
     <i class="fas fa-arrow-up"></i>
   </div>
+
+  <!-- Sound Toggle -->
+  <button class="sound-toggle" id="soundToggle" aria-label="Toggle sound effects" aria-pressed="true" title="Toggle sound effects">🔊</button>
+
+  <!-- Sound Effects -->
+  <audio id="sfxGlitch" src="assets/673774__h0p1r4e7o__glitch-sfx-148-sek.wav" preload="none"></audio>
+  <audio id="sfxShimmer" src="assets/771946__harrisonlace__shimmer-fx.wav" preload="none"></audio>
 
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
@@ -1346,6 +1441,7 @@ window.addEventListener('load', function() {
         playPromise.catch((err) => console.warn('Logo animation autoplay blocked:', err));
       }
       if (logoModalClose) logoModalClose.focus();
+      SoundFX.glitch();
     }
 
     function closeLogoModal() {
@@ -1356,6 +1452,7 @@ window.addEventListener('load', function() {
       logoModal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
       if (devLogo) devLogo.focus();
+      SoundFX.blip(330, 0.07);
     }
 
     if (devLogo && logoModal) {
@@ -1375,6 +1472,163 @@ window.addEventListener('load', function() {
     }
     if (logoModalClose) logoModalClose.addEventListener('click', closeLogoModal);
     if (logoVideo) logoVideo.addEventListener('ended', closeLogoModal);
+
+    // Sound effects engine (file SFX + WebAudio blips, mutable + persisted)
+    const SoundFX = (() => {
+      let enabled = localStorage.getItem('ajiSound') !== 'off';
+      let audioCtx = null;
+      const glitchEl = document.getElementById('sfxGlitch');
+      const shimmerEl = document.getElementById('sfxShimmer');
+      if (glitchEl) glitchEl.volume = 0.35;
+      if (shimmerEl) shimmerEl.volume = 0.4;
+      function playFile(el) {
+        if (!enabled || !el) return;
+        try {
+          el.currentTime = 0;
+          const p = el.play();
+          if (p && typeof p.catch === 'function') p.catch(() => {});
+        } catch (e) { /* ignore */ }
+      }
+      function blip(freq, dur) {
+        if (!enabled) return;
+        try {
+          freq = freq || 620; dur = dur || 0.05;
+          audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+          if (audioCtx.state === 'suspended') audioCtx.resume();
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine'; osc.frequency.value = freq;
+          gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur);
+          osc.connect(gain); gain.connect(audioCtx.destination);
+          osc.start(); osc.stop(audioCtx.currentTime + dur);
+        } catch (e) { /* ignore */ }
+      }
+      return {
+        isEnabled() { return enabled; },
+        toggle() {
+          enabled = !enabled;
+          localStorage.setItem('ajiSound', enabled ? 'on' : 'off');
+          return enabled;
+        },
+        glitch() { playFile(glitchEl); },
+        shimmer() { playFile(shimmerEl); },
+        blip
+      };
+    })();
+
+    const soundToggle = document.getElementById('soundToggle');
+    function renderSoundToggle() {
+      if (!soundToggle) return;
+      const on = SoundFX.isEnabled();
+      soundToggle.textContent = on ? '🔊' : '🔇';
+      soundToggle.setAttribute('aria-pressed', String(on));
+    }
+    if (soundToggle) {
+      renderSoundToggle();
+      soundToggle.addEventListener('click', () => {
+        const on = SoundFX.toggle();
+        renderSoundToggle();
+        if (on) SoundFX.blip(660, 0.07);
+      });
+    }
+
+    // Terminal typing effect
+    (function terminalTyping() {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const textBox = document.querySelector('.terminal-text');
+      if (!textBox) return;
+      const lines = Array.from(textBox.querySelectorAll('p')).map(p => p.textContent);
+      if (reduceMotion || !lines.length) return;
+      textBox.innerHTML = '';
+      let p = document.createElement('p');
+      let t = document.createTextNode('');
+      const caret = document.createElement('span');
+      caret.className = 'typing-caret';
+      caret.setAttribute('aria-hidden', 'true');
+      p.appendChild(t);
+      p.appendChild(caret);
+      textBox.appendChild(p);
+      let li = 0, ci = 0;
+      function type() {
+        if (li >= lines.length) { caret.remove(); return; }
+        const line = lines[li];
+        if (ci <= line.length) {
+          t.nodeValue = line.slice(0, ci);
+          ci++;
+          setTimeout(type, 22);
+        } else {
+          li++; ci = 0;
+          if (li < lines.length) {
+            p = document.createElement('p');
+            t = document.createTextNode('');
+            p.appendChild(t);
+            p.appendChild(caret);
+            textBox.appendChild(p);
+            setTimeout(type, 220);
+          } else {
+            caret.remove();
+          }
+        }
+      }
+      type();
+    })();
+
+    // Game card 3D tilt (fine pointers only)
+    (function cardTilt() {
+      const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!fine || reduceMotion) return;
+      document.querySelectorAll('.game-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const r = card.getBoundingClientRect();
+          const rx = ((e.clientY - r.top) / r.height - 0.5) * -8;
+          const ry = ((e.clientX - r.left) / r.width - 0.5) * 8;
+          card.classList.add('tilting');
+          card.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.classList.remove('tilting');
+          card.style.transform = '';
+        });
+      });
+    })();
+
+    // Game search / filter
+    (function gameSearch() {
+      const input = document.getElementById('gameSearch');
+      const grid = document.getElementById('gamesGrid');
+      if (!input || !grid) return;
+      let msg = document.createElement('div');
+      msg.className = 'no-games-msg';
+      msg.textContent = 'No games match your search.';
+      msg.style.display = 'none';
+      grid.appendChild(msg);
+      input.addEventListener('input', () => {
+        const q = input.value.trim().toLowerCase();
+        let shown = 0;
+        grid.querySelectorAll('.game-card').forEach(card => {
+          const hit = !q || card.textContent.toLowerCase().includes(q);
+          card.style.display = hit ? '' : 'none';
+          if (hit) shown++;
+        });
+        msg.style.display = shown ? 'none' : '';
+      });
+    })();
+
+    // Quiet hover blips on game cards (throttled)
+    (function cardBlips() {
+      let last = 0;
+      document.querySelectorAll('.game-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          const now = Date.now();
+          if (now - last > 180) { last = now; SoundFX.blip(520, 0.04); }
+        });
+      });
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => SoundFX.blip(700, 0.05));
+      });
+    })();
 
     // Set current year
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -1451,11 +1705,20 @@ window.addEventListener('load', function() {
       const email = document.getElementById('email').value.trim();
       const message = document.getElementById('message').value.trim();
       
+      const formStatus = document.getElementById('formStatus');
+      const sendBtn = document.getElementById('sendBtn');
       // Validate form inputs
       if (!name || !email || !message) {
-        alert('Please fill in all required fields.');
+        formStatus.textContent = 'Please fill in all required fields.';
+        formStatus.className = 'error';
+        SoundFX.blip(220, 0.12);
         return;
       }
+      formStatus.textContent = 'Sending...';
+      formStatus.className = '';
+      sendBtn.disabled = true;
+      const originalBtnText = sendBtn.textContent;
+      sendBtn.textContent = 'SENDING...';
       
       // Get current time in HH:MM format (IST, UTC+5:30)
       const now = new Date();
@@ -1474,11 +1737,19 @@ window.addEventListener('load', function() {
       })
       .then(function(response) {
         console.log('SUCCESS!', response.status, response.text);
-        alert(`Thank you, ${name}! Your message has been sent successfully.`);
+        formStatus.textContent = `Thank you, ${name}! Your message has been sent successfully.`;
+        formStatus.className = 'success';
+        SoundFX.shimmer();
         document.getElementById('contactForm').reset();
       }, function(error) {
-        console.error('FAILED...', error.status, error.text);
-        alert(`Failed to send message: ${error.text}`);
+        console.error('FAILED...', error);
+        formStatus.textContent = 'Failed to send message. Please try again later.';
+        formStatus.className = 'error';
+        SoundFX.blip(220, 0.12);
+      })
+      .finally(function() {
+        sendBtn.disabled = false;
+        sendBtn.textContent = originalBtnText;
       });
     });
   </script>
