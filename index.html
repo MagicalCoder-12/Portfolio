@@ -112,6 +112,57 @@
       transform: rotate(10deg) scale(1.05);
       box-shadow: 0 0 40px var(--neon-blue);
     }
+
+    .logo-clickable { cursor: pointer; }
+    .logo-clickable:focus-visible {
+      outline: 3px solid var(--neon-blue);
+      outline-offset: 4px;
+    }
+
+    /* Logo animation modal */
+    .logo-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: rgba(5, 5, 16, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .logo-modal.open { opacity: 1; visibility: visible; }
+    .logo-modal-content {
+      position: relative;
+      width: min(720px, 92vw);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.25);
+      background: #000;
+    }
+    .logo-modal-content video { display: block; width: 100%; height: auto; background: #000; }
+    .logo-modal-close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-modal-close:hover { border-color: var(--neon-blue); color: var(--neon-blue); }
     
     h1 {
       font-size: 3rem;
@@ -890,7 +941,7 @@
 
   <!-- Header -->
   <header>
-    <img src="assets/dev_icon_resized.png" alt="AJI Creators Logo" class="logo floating">
+    <img src="assets/dev_icon_resized.png" alt="AJI Creators Logo - press to play logo animation" class="logo floating logo-clickable" id="devLogo" role="button" tabindex="0" title="Play logo animation" aria-haspopup="dialog">
     <h1 class="glow">AJI <span class="ficker">CREATORS</span></h1>
     <p class="tagline purple-glow">CRAFTING IMMERSIVE GAME EXPERIENCES</p>
   </header>
@@ -1181,6 +1232,14 @@
     <p class="copyright">© <span id="year"></span> AJI CREATORS. ALL RIGHTS RESERVED.</p>
   </footer>
   
+  <!-- Logo Animation Modal -->
+  <div class="logo-modal" id="logoModal" role="dialog" aria-modal="true" aria-label="Logo animation video" aria-hidden="true">
+    <div class="logo-modal-content">
+      <button class="logo-modal-close" id="logoModalClose" aria-label="Close logo animation">&times;</button>
+      <video id="logoAnimationVideo" src="assets/logo_animation.mp4" controls playsinline preload="none"></video>
+    </div>
+  </div>
+
   <!-- Back to Top Button -->
   <div class="back-to-top" id="backToTop">
     <i class="fas fa-arrow-up"></i>
@@ -1270,6 +1329,53 @@ window.addEventListener('load', function() {
       });
     });
     
+    // Logo animation modal - play when dev icon is pressed
+    const devLogo = document.getElementById('devLogo');
+    const logoModal = document.getElementById('logoModal');
+    const logoVideo = document.getElementById('logoAnimationVideo');
+    const logoModalClose = document.getElementById('logoModalClose');
+
+    function openLogoModal() {
+      if (!logoModal || !logoVideo) return;
+      logoModal.classList.add('open');
+      logoModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      logoVideo.currentTime = 0;
+      const playPromise = logoVideo.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch((err) => console.warn('Logo animation autoplay blocked:', err));
+      }
+      if (logoModalClose) logoModalClose.focus();
+    }
+
+    function closeLogoModal() {
+      if (!logoModal || !logoVideo) return;
+      logoVideo.pause();
+      logoVideo.currentTime = 0;
+      logoModal.classList.remove('open');
+      logoModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (devLogo) devLogo.focus();
+    }
+
+    if (devLogo && logoModal) {
+      devLogo.addEventListener('click', openLogoModal);
+      devLogo.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLogoModal();
+        }
+      });
+      logoModal.addEventListener('click', (e) => {
+        if (e.target === logoModal) closeLogoModal();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && logoModal.classList.contains('open')) closeLogoModal();
+      });
+    }
+    if (logoModalClose) logoModalClose.addEventListener('click', closeLogoModal);
+    if (logoVideo) logoVideo.addEventListener('ended', closeLogoModal);
+
     // Set current year
     document.getElementById('year').textContent = new Date().getFullYear();
     
