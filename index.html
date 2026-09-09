@@ -464,7 +464,28 @@
       transform: scale(1.05);
     }
 
-    /* Game search */
+    /* Game search + status filter */
+    .game-browse-bar {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: stretch;
+      margin-top: 1rem;
+    }
+    .game-browse-bar .game-search-wrap { margin-top: 0; flex: 1 1 240px; }
+    .game-status-filter {
+      background: rgba(0, 255, 255, 0.04);
+      border: 1px solid rgba(0, 255, 255, 0.25);
+      border-radius: 8px;
+      color: var(--text-color);
+      font-size: 0.9rem;
+      font-family: inherit;
+      padding: 0.55rem 0.9rem;
+      cursor: pointer;
+      outline: none;
+    }
+    .game-status-filter:focus-visible { border-color: var(--neon-blue); box-shadow: 0 0 10px rgba(0, 255, 255, 0.3); }
+    .game-status-filter option { background: #0f0f2a; color: var(--text-color); }
     .game-search-wrap {
       display: flex;
       align-items: center;
@@ -1092,12 +1113,21 @@
     <section id="games">
       <h2>MY GAMES</h2>
       <p>Explore my growing portfolio of immersive gaming experiences:</p>
-      <div class="game-search-wrap">
-        <i class="fas fa-search" aria-hidden="true"></i>
-        <input type="search" id="gameSearch" placeholder="Search games..." aria-label="Search games">
+      <div class="game-browse-bar">
+        <div class="game-search-wrap">
+          <i class="fas fa-search" aria-hidden="true"></i>
+          <input type="search" id="gameSearch" placeholder="Search games..." aria-label="Search games">
+        </div>
+        <select id="gameStatusFilter" class="game-status-filter" aria-label="Filter games by status">
+          <option value="all">All games</option>
+          <option value="featured">⭐ Featured</option>
+          <option value="published">Published</option>
+          <option value="indev">In Dev</option>
+          <option value="casual">Casual / Private</option>
+        </select>
       </div>
   <div class="games-grid" id="gamesGrid">
-    <div class="game-card featured">
+    <div class="game-card featured" data-status="featured published">
       <div class="featured-badge"><i class="fas fa-crown"></i> Featured</div>
       <img src="assets/app_icon_resized.png" alt="Shadow Avengers" class="game-image" loading="lazy" decoding="async">
       <div class="game-info">
@@ -1119,7 +1149,7 @@
       </div>
     </div>
 
-    <div class="game-card">
+    <div class="game-card" data-status="casual">
       <img src="assets/Dino.jpg" alt="Dino Birthday" class="game-image" loading="lazy" decoding="async">
       <div class="game-info">
         <h3 class="game-title">Dino Birthday</h3>
@@ -1136,7 +1166,7 @@
       </div>
     </div>
 
-    <div class="game-card">
+    <div class="game-card" data-status="published">
       <img src="assets/Slime.png" alt="Slime Race" class="game-image" loading="lazy" decoding="async">
       <div class="game-info">
         <h3 class="game-title">SLIME RACE</h3>
@@ -1154,7 +1184,7 @@
       </div>
     </div>
 
-    <div class="game-card">
+    <div class="game-card" data-status="published">
       <img src="assets/Swim Bomber.png" alt="Swim Bomber" class="game-image" loading="lazy" decoding="async">
       <div class="game-info">
         <h3 class="game-title">SWIM BOMBER</h3>
@@ -1172,7 +1202,7 @@
       </div>
     </div>
 
-    <div class="game-card">
+    <div class="game-card" data-status="published">
       <img src="assets/Beach_cleanup.png" alt="Beach Cleanup" class="game-image" loading="lazy" decoding="async">
       <div class="game-info">
         <h3 class="game-title">BEACH CLEANUP</h3>
@@ -1191,7 +1221,7 @@
       </div>
     </div>
 
-    <div class="game-card">
+    <div class="game-card" data-status="published">
       <img src="assets/Backaw.png" alt="Backaw" class="game-image" loading="lazy" decoding="async">
       <div class="game-info">
         <h3 class="game-title">BACKOW!</h3>
@@ -1210,7 +1240,7 @@
       </div>
     </div>
 
-    <div class="game-card">
+    <div class="game-card" data-status="published">
       <img src="assets/FormShift.png" alt="Form Shift" class="game-image" loading="lazy" decoding="async">
       <div class="game-info">
         <h3 class="game-title">FORM SHIFT</h3>
@@ -1229,7 +1259,7 @@
       </div>
     </div>
 
-    <div class="game-card">
+    <div class="game-card" data-status="indev">
       <div class="dev-badge"><i class="fas fa-code"></i> In Dev</div>
       <img src="https://placehold.co/600x400/1a1a3a/00ffff?text=COMING+SOON" alt="Coming Soon" class="game-image" loading="lazy" decoding="async">
       <div class="game-info">
@@ -1244,7 +1274,7 @@
       </div>
     </div>
 
-    <div class="game-card">
+    <div class="game-card" data-status="casual">
       <div class="dev-badge"><i class="fas fa-code"></i> Prototype</div>
       <img src="https://placehold.co/600x400/1a1a3a/00ffff?text=VR+PROTOTYPE" alt="VR Puzzle Game" class="game-image" loading="lazy" decoding="async">
       <div class="game-info">
@@ -1260,11 +1290,10 @@
           <span class="game-meta-tag">VR</span>
           <span class="game-meta-tag">Level Design</span>
         </div>
-        <a href="#" class="game-link">INTERNAL TOOL</a>
       </div>
     </div>
 
-    <div class="game-card">
+    <div class="game-card" data-status="indev">
       <div class="dev-badge"><i class="fas fa-code"></i> In Dev</div>
       <img src="https://placehold.co/600x400/1a1a3a/00ffff?text=MERGE+MAZA" alt="Merge Maza" class="game-image" loading="lazy" decoding="async">
       <div class="game-info">
@@ -1279,7 +1308,7 @@
       </div>
     </div>
 
-    <div class="game-card">
+    <div class="game-card" data-status="indev">
       <div class="dev-badge"><i class="fas fa-code"></i> In Dev</div>
       <img src="https://placehold.co/600x400/1a1a3a/00ffff?text=RELOAD+OR+ROT" alt="Reload or Rot" class="game-image" loading="lazy" decoding="async">
       <div class="game-info">
@@ -1318,7 +1347,8 @@
             <div class="terminal-text">
               <p>> CURRENT PROJECTS: SOLAR NEXUS RPG</p>
               <p>> YEARS EXPERIENCE: 2+</p>
-              <p>> GAMES PUBLISHED: 5</p>
+              <p>> GAMES PUBLISHED: 6</p>
+              <p>> GAMES IN PROGRESS: 3</p>
               <p>> PLATFORMS: Android | Web</p>
             </div>
           </div>
@@ -1662,25 +1692,35 @@ window.addEventListener('load', function() {
       });
     })();
 
-    // Game search / filter
+    // Game search + status filter
     (function gameSearch() {
       const input = document.getElementById('gameSearch');
+      const statusFilter = document.getElementById('gameStatusFilter');
       const grid = document.getElementById('gamesGrid');
       if (!input || !grid) return;
       let msg = document.createElement('div');
       msg.className = 'no-games-msg';
-      msg.textContent = 'No games match your search.';
+      msg.textContent = 'No games match your search or filter.';
       msg.style.display = 'none';
       grid.appendChild(msg);
-      input.addEventListener('input', () => {
+      function applyFilters() {
         const q = input.value.trim().toLowerCase();
+        const status = statusFilter ? statusFilter.value : 'all';
         let shown = 0;
         grid.querySelectorAll('.game-card').forEach(card => {
-          const hit = !q || card.textContent.toLowerCase().includes(q);
+          const matchesText = !q || card.textContent.toLowerCase().includes(q);
+          const statuses = (card.dataset.status || '').split(' ');
+          const matchesStatus = status === 'all' || statuses.includes(status);
+          const hit = matchesText && matchesStatus;
           card.style.display = hit ? '' : 'none';
           if (hit) shown++;
         });
         msg.style.display = shown ? 'none' : '';
+      }
+      input.addEventListener('input', applyFilters);
+      if (statusFilter) statusFilter.addEventListener('change', () => {
+        applyFilters();
+        SoundFX.blip(700, 0.05);
       });
     })();
 
