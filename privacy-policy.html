@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | AJI Creators</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f2027 0%, #1a2a32 50%, #2c5364 100%);
+      color: #e0e0e0;
+      line-height: 1.8;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+      background-attachment: fixed;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+      border: 1px solid rgba(0, 255, 255, 0.1);
+    }
+
+    img.logo {
+      width: 128px;
+      height: 128px;
+      border-radius: 16px;
+      margin: 10px auto;
+      display: block;
+      filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.4));
+      transition: transform 0.3s ease;
+    }
+
+    img.logo:hover {
+      transform: scale(1.05);
+    }
+
+    h1 {
+      color: #00ffff;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+      font-size: 2.2em;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #00ffff;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+      padding-bottom: 5px;
+      margin-top: 30px;
+      scroll-margin-top: 16px;
+    }
+
+    h3 {
+      color: #00ccff;
+      scroll-margin-top: 16px;
+    }
+
+    a {
+      color: #00ffcc;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: #00ffff;
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.9em;
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+    }
+
+    .policy-section {
+      background: rgba(15, 30, 40, 0.7);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border-left: 3px solid #00ffff;
+    }
+
+    strong {
+      color: #00ccff;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    li:before {
+      content: "•";
+      color: #00ffff;
+      position: absolute;
+      left: -15px;
+    }
+
+    code {
+      background: rgba(0, 50, 70, 0.5);
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+
+    .back-button {
+      background: rgba(0, 200, 255, 0.2);
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: 1px solid #00ffff;
+      display: inline-block;
+      margin: 20px 0;
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: rgba(0, 200, 255, 0.4);
+      text-decoration: none;
+    }
+
+    .print-link {
+      font-size: 0.9em;
+      float: right;
+      margin-bottom: 20px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    .apps-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      font-size: 0.95em;
+      min-width: 520px;
+    }
+
+    .apps-table th,
+    .apps-table td {
+      border: 1px solid rgba(0, 255, 255, 0.25);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .apps-table th {
+      background: rgba(0, 255, 255, 0.1);
+      color: #00ccff;
+    }
+
+    .apps-table tr:nth-child(even) td {
+      background: rgba(0, 50, 70, 0.25);
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5em; }
+      body { padding: 12px; line-height: 1.6; }
+      .policy-section { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="assets/dev_icon_resized.png" alt="AJI Creators Logo" class="logo" />
+    <h1>AJI Creators - Privacy Policy</h1>
+    <h3>All games and applications published by AJI Creators</h3>
+  </header>
+
+  <div style="text-align: right;">
+    <a href="javascript:window.print()" class="print-link">🖨️ Print this Policy</a>
+  </div>
+
+  <p><strong>Effective Date:</strong> <span id="updateDate"></span></p>
+
+  <div class="policy-section">
+    <h2>Introduction</h2>
+    <p>This Privacy Policy explains how <strong>AJI Creators</strong> and our third-party partners collect, use, and share information when you use our games and applications.</p>
+    <p>This single policy covers every application listed in the <strong>Apps Covered by This Policy</strong> section below. If an app of ours is not listed there, this policy does not apply to it.</p>
+    <p>By using an App, you agree to the collection and use of information in accordance with this policy.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Apps Covered by This Policy</h2>
+    <div class="table-wrap">
+      <table class="apps-table">
+        <thead>
+          <tr>
+            <th>App</th>
+            <th>Platform</th>
+            <th>Data collection</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Shadow Avengers</td>
+            <td>Android — <code>com.Aj.ShadowAvenger</code></td>
+            <td>Google AdMob ads · stored on device only · no server transmission</td>
+          </tr>
+          <tr>
+            <td>Merge Maza</td>
+            <td>Android — <code>com.AJ.Merge_manza</code></td>
+            <td>Google AdMob ads · stored on device · online leaderboard (display name + score)</td>
+          </tr>
+          <tr>
+            <td>Reload or Rot</td>
+            <td>Windows, Android — in development</td>
+            <td>Not yet released</td>
+          </tr>
+          <tr>
+            <td>Slime Race</td>
+            <td>Web — itch.io</td>
+            <td>None collected by the game</td>
+          </tr>
+          <tr>
+            <td>Swim Bomber</td>
+            <td>Web — itch.io</td>
+            <td>None collected by the game</td>
+          </tr>
+          <tr>
+            <td>Beach Cleanup</td>
+            <td>Web — itch.io</td>
+            <td>None collected by the game</td>
+          </tr>
+          <tr>
+            <td>Backow!</td>
+            <td>Web — itch.io</td>
+            <td>None collected by the game</td>
+          </tr>
+          <tr>
+            <td>Form Shift</td>
+            <td>Web — itch.io</td>
+            <td>None collected by the game</td>
+          </tr>
+          <tr>
+            <td>Solar Nexus</td>
+            <td>Godot — in development</td>
+            <td>Not yet released</td>
+          </tr>
+          <tr>
+            <td>VR Puzzle Game</td>
+            <td>Unity — prototype</td>
+            <td>Not released</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Jump to details: <a href="#shadow-avengers">Shadow Avengers</a> · <a href="#merge-maza">Merge Maza</a> · <a href="#reload-or-rot">Reload or Rot</a> · <a href="#web-games">Web games</a></p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Compliance Notice</h2>
+    <p>Our Apps comply with:</p>
+    <ul>
+      <li>Google Play Developer Policies</li>
+      <li>GDPR (for EU users)</li>
+      <li>CCPA (for California residents)</li>
+      <li>COPPA (we do not knowingly collect data from children under 13)</li>
+    </ul>
+    <p>Our ads implementation follows Google's <a href="https://support.google.com/admob/answer/6128543" target="_blank" rel="noopener">Families Policy</a> requirements.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Information Collection &amp; Use</h2>
+
+    <h3>Data Stored Only On Your Device</h3>
+    <p>Each App keeps its progress, settings and preferences in local files inside the App's own private storage on your device. None of this is uploaded to any AJI Creators server — we do not operate one.</p>
+
+    <h3>Data Sent By an App</h3>
+    <p>Two categories of data can leave your device:</p>
+    <ul>
+      <li><strong>Advertising data</strong> — sent to Google AdMob when an App displays an ad. See <em>Advertising Analytics</em> below.</li>
+      <li><strong>Leaderboard data</strong> — sent only by <strong>Merge Maza</strong>, when you choose to submit a score. See <em>App-Specific Notes</em> below.</li>
+    </ul>
+    <p>No other App in scope sends data off your device.</p>
+
+    <h3>Information We Do Not Collect</h3>
+    <ul>
+      <li>Real name, email address or phone number</li>
+      <li>Contacts, photos, location or microphone/camera data</li>
+      <li>Account credentials — none of our Apps require an account</li>
+      <li>Precise device identifiers beyond what the ad SDK reads</li>
+    </ul>
+
+    <h3>Why We Use It</h3>
+    <ul>
+      <li>To run the game and save your progress</li>
+      <li>To display and measure advertising</li>
+      <li>To operate the Merge Maza leaderboard you explicitly submit to</li>
+      <li>To prevent fraud and abuse of rewarded ads</li>
+    </ul>
+  </div>
+
+  <div class="policy-section">
+    <h2>App-Specific Notes</h2>
+
+    <h3 id="shadow-avengers">Shadow Avengers</h3>
+    <p>Stores game progress and high scores <strong>only on your device</strong>, in local files named <code>high_score.dat</code> and <code>game_progress.dat</code>.</p>
+    <p>Shadow Avengers <strong>does not transmit any personal data to AJI Creators servers</strong>. The only data that leaves the device is the advertising data described in <em>Advertising Analytics</em>, sent to Google AdMob.</p>
+
+    <h3 id="merge-maza">Merge Maza</h3>
+    <p><strong>Local data</strong> — stored only on your device, in these files:</p>
+    <ul>
+      <li><code>highscore.cfg</code> — your high score</li>
+      <li><code>powerups.cfg</code> — power-up charges</li>
+      <li><code>ads.cfg</code> — rewarded-ad quota counter</li>
+      <li><code>player.cfg</code> — the display name you typed for the leaderboard</li>
+      <li><code>audio.cfg</code> — volume settings</li>
+      <li><code>seen_tiers.cfg</code> — which planets you have already discovered</li>
+    </ul>
+    <p><strong>Online leaderboard</strong> — when you submit a score, Merge Maza sends a JSON payload of
+    <code>{"name": ..., "score": ...}</code> containing <strong>the display name you chose</strong> and your
+    <strong>score</strong> to a third-party leaderboard host:
+    <a href="https://api.npoint.io/c1ce436c649b14b518c3" target="_blank" rel="noopener">api.npoint.io</a>.
+    That display name becomes visible to anyone viewing the leaderboard. The host retains submitted entries under
+    its own privacy policy. The name never leaves your device otherwise, and AJI Creators does not associate it with
+    any identifier.</p>
+    <p><strong>Advertising</strong> — Merge Maza shows Google AdMob <strong>banner</strong> and
+    <strong>rewarded</strong> ads.</p>
+    <p><strong>Android permissions requested:</strong> <code>INTERNET</code>,
+    <code>ACCESS_NETWORK_STATE</code>, <code>ACCESS_WIFI_STATE</code>, <code>AD_ID</code>.</p>
+
+    <h3 id="reload-or-rot">Reload or Rot</h3>
+    <p>Still in development and not yet publicly released. At release this section will be updated to describe its
+    data practices; the App collects nothing today.</p>
+
+    <h3 id="web-games">Web games: Slime Race, Swim Bomber, Beach Cleanup, Backow!, Form Shift</h3>
+    <p>These are browser builds hosted on <a href="https://aji-creators.itch.io/" target="_blank" rel="noopener">itch.io</a>
+    (Backow! is hosted by its jam team). The games themselves contain no analytics, no advertising SDK and no
+    network calls, and collect no personal data.</p>
+    <p>When you visit an itch.io page, itch.io's own privacy policy applies to the hosting platform.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Advertising Analytics</h2>
+    <p>Apps that display ads use Google AdMob. AdMob may collect:</p>
+    <ul>
+      <li>Device information (model, OS version, IP address)</li>
+      <li>Non-personal identifiers (Advertising ID)</li>
+      <li>Ad interactions (clicks, impressions)</li>
+      <li>Usage data for analytics and fraud prevention</li>
+    </ul>
+    <p>Data is encrypted in transit using TLS. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</p>
+    <p>Which apps show ads:</p>
+    <ul>
+      <li><strong>Shadow Avengers</strong> — ad-supported</li>
+      <li><strong>Merge Maza</strong> — ad-supported (banner and rewarded ads)</li>
+      <li>All other Apps in scope — no advertising SDK</li>
+    </ul>
+  </div>
+
+  <div class="policy-section">
+    <h2>Personalized Ads</h2>
+    <p>We may serve personalized ads through Google AdMob. You can limit how advertising is personalized:</p>
+    <ul>
+      <li>Through <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google's Ad Settings</a></li>
+      <li>Through your device's advertising options (on Android: <strong>Settings → Google → Ads → Opt out of Ads Personalization</strong>)</li>
+      <li>By declining personalised advertising where your device or region offers that choice</li>
+    </ul>
+    <p>Even if you opt out, you will still see ads — they will simply be non-personalized and based on contextual
+    information such as the app you are using or general attributes of your device.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Children's Privacy</h2>
+    <p><strong>Our Apps are intended for a general audience</strong> and do not target children under 13. We do not knowingly collect personal information from children under 13.</p>
+    <p>If you believe we might have any information from or about a child under 13, please contact us immediately.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Data Retention</h2>
+    <p>AJI Creators does not operate servers that hold your data, and we retain no user information ourselves.</p>
+    <ul>
+      <li>Local game data stays on your device until you clear the App's data or uninstall the App.</li>
+      <li>Merge Maza leaderboard entries persist on the third-party leaderboard host until that host removes them.</li>
+      <li>Advertising partners retain data according to their respective privacy policies.</li>
+    </ul>
+  </div>
+
+  <div class="policy-section">
+    <h2>Your Rights</h2>
+    <p>Depending on your location, you may have rights including:</p>
+    <ul>
+      <li><strong>Access:</strong> Request copies of your data</li>
+      <li><strong>Correction:</strong> Request correction of inaccurate data</li>
+      <li><strong>Deletion:</strong> Request deletion of your data</li>
+      <li><strong>Opt-out:</strong> Object to processing of your data</li>
+    </ul>
+    <p>To exercise these rights, contact us using the information below. For leaderboard entries, we will forward or
+    remove your display name on your behalf where the host does not expose a self-service mechanism.</p>
+    <p>You can also delete local data yourself at any time by clearing the App's storage or uninstalling it.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Security</h2>
+    <p>We implement reasonable security measures to protect your information:</p>
+    <ul>
+      <li>All data transmission uses TLS encryption</li>
+      <li>Game data remains locally stored on your device unless an App explicitly sends it</li>
+      <li>Regular reviews of our data practices</li>
+    </ul>
+    <p>However, no method of transmission over the Internet is 100% secure.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Related Policies</h2>
+    <p>Some AJI Creators products are covered by their own, separate policy because they are not games and collect
+    different data:</p>
+    <ul>
+      <li><a href="MPH_songs_policy.html">MPH Songs — Privacy Policy</a></li>
+    </ul>
+  </div>
+
+  <div class="policy-section">
+    <h2>Changes to This Policy</h2>
+    <p>We may update this policy occasionally. We will notify you of any changes by:</p>
+    <ul>
+      <li>Posting the new policy on this page</li>
+      <li>Updating the "Effective Date" at the top</li>
+      <li>In-app notification for significant changes</li>
+    </ul>
+    <p>You're advised to review this policy periodically for any changes.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Contact Us</h2>
+    <p>For privacy-related inquiries or data requests:</p>
+    <p><strong>Data Protection Officer</strong><br>
+    AJI Creators<br>
+    Email: <a href="mailto:royaloverlord.aicreator@gmail.com">royaloverlord.aicreator@gmail.com</a></p>
+    <p>We typically respond within 5-7 business days.</p>
+  </div>
+
+  <div style="text-align: center;">
+    <a href="https://magicalcoder-12.github.io/Portfolio/" class="back-button">← Return to AJI Creators</a>
+  </div>
+
+  <footer>
+    <p>&copy; <span id="currentYear"></span> AJI Creators</p>
+    <p>All game content and trademarks are property of their respective owners.</p>
+  </footer>
+
+  <script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    document.getElementById('updateDate').textContent = new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  </script>
+</body>
+</html>

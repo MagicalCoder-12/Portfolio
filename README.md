@@ -18,7 +18,7 @@ I'm a B.Tech student in AI & Data Science at St. Martin's Engineering College (C
 | Game | Platform | Engine | Status |
 |------|----------|--------|--------|
 | Shadow Avengers | [Google Play](https://play.google.com/store/apps/dev?id=6253925717132103947) | Godot | Published (5.0★, 100+ downloads) |
-| Dino Birthday | [Google Play](https://play.google.com/store/apps/dev?id=6253925717132103947) | Godot | Published |
+| Dino Birthday | Android (private build) | Godot | Unofficial build — not published on Google Play |
 | Slime Race | [itch.io](https://aji-creators.itch.io/) | Godot | Playable (built in 4 days) |
 | Swim Bomber | [itch.io](https://aji-creators.itch.io/swim-bomber) | Godot | Playable (built in 6 days) |
 | Solar Nexus | — | Godot | In Development |

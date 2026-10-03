@@ -21,7 +21,7 @@ My Portfolio/
 ├── portfolio.html      # Additional portfolio page
 ├── solar_nexus.html   # Game info page
 ├── dino_info.html     # Dino Birthday game page
-├── privacy.html       # Privacy policy
+├── privacy-policy.html # Privacy policy covering all AJI Creators games
 ├── assets/            # Images and media
 │   ├── me.jpg
 │   ├── app_icon_resized.png
